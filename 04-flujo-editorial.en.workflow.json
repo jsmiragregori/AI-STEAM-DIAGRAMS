@@ -1,0 +1,58 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Editorial workflow — edit and publish",
+    "locale": "en",
+    "output": "docs/diagrams/04-flujo-editorial.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [1180, 668],
+    "legend": { "entries": { "frontend": { "label": "Frontend" }, "backend": { "label": "Service" }, "security": { "label": "Security" }, "external": { "label": "External actor" } } },
+    "views": [
+      { "id": "edit", "label": "Edit", "focus": ["abrir", "editar", "validar"], "note": "An editor opens a section, changes the content, and the panel validates it before saving." },
+      { "id": "preview", "label": "Preview", "focus": ["validar", "previa", "regenerar"], "note": "The preview uses the same function as the build: what you see is what gets published." },
+      { "id": "publish", "label": "Publish", "focus": ["regenerar", "loader", "visible"], "note": "The loader writes assets/data over NFS and the change is visible instantly." },
+      { "id": "fix", "label": "Fix", "focus": ["validar", "corregir", "editar"], "note": "If validation fails, nothing is saved: fix the content and try again." }
+    ]
+  },
+  "lanes": [
+    { "id": "edicion", "label": "Editing · CEICE" },
+    { "id": "panel", "label": "Management panel" },
+    { "id": "generacion", "label": "Generation and publishing" },
+    { "id": "incidencias", "label": "Review and fix", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "phase-edit", "label": "Edit", "fromCol": 0, "toCol": 1 },
+    { "id": "phase-validate", "label": "Validate and preview", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "phase-publish", "label": "Publish", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "groups": [
+    { "id": "gate", "label": "Validation gate", "lane": "panel", "fromCol": 2, "toCol": 2, "variant": "security" }
+  ],
+  "mainPath": ["abrir", "editar", "validar", "previa", "regenerar", "loader", "visible"],
+  "nodes": [
+    { "id": "abrir", "lane": "edicion", "col": 0, "type": "external", "label": "Open section", "sublabel": "panel menu", "width": 132 },
+    { "id": "editar", "lane": "edicion", "col": 1, "type": "external", "label": "Edit content", "sublabel": "YAML/CSV · es/en/va", "width": 132 },
+    { "id": "validar", "lane": "panel", "col": 2, "type": "security", "label": "Validate", "sublabel": "schema and fields", "tag": "fails closed", "width": 132 },
+    { "id": "previa", "lane": "panel", "col": 3, "type": "frontend", "label": "Preview", "sublabel": "same render as the build", "width": 132 },
+    { "id": "regenerar", "lane": "panel", "col": 4, "type": "backend", "label": "Regenerate section", "sublabel": "closed action cms:*", "width": 132 },
+    { "id": "loader", "lane": "generacion", "col": 4, "type": "backend", "label": "Loader and write", "sublabel": "assets/data · NFS", "width": 132 },
+    { "id": "visible", "lane": "generacion", "col": 5, "type": "frontend", "label": "Visible instantly", "sublabel": "no deployment", "width": 132 },
+    { "id": "corregir", "lane": "incidencias", "col": 2, "type": "security", "label": "Fix and retry", "sublabel": "validation error", "width": 132 }
+  ],
+  "edges": [
+    { "id": "abrir-editar", "from": "abrir", "to": "editar", "variant": "default" },
+    { "id": "editar-validar", "from": "editar", "to": "validar", "label": "save changes", "variant": "emphasis", "role": "main" },
+    { "id": "validar-previa", "from": "validar", "to": "previa", "label": "no errors", "variant": "default", "role": "main" },
+    { "id": "previa-regenerar", "from": "previa", "to": "regenerar", "label": "approved", "variant": "emphasis", "role": "main" },
+    { "id": "regenerar-loader", "from": "regenerar", "to": "loader", "label": "runs cms:*", "variant": "default", "role": "main" },
+    { "id": "loader-visible", "from": "loader", "to": "visible", "label": "assets/data · NFS", "variant": "emphasis", "role": "main" },
+    { "id": "validar-corregir", "from": "validar", "to": "corregir", "label": "validation error", "variant": "security", "role": "error" },
+    { "id": "corregir-editar", "from": "corregir", "to": "editar", "label": "review", "variant": "dashed", "role": "branch" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Fails closed", "items": ["Validation runs before any write", "No save means no regeneration"] },
+    { "dot": "emerald", "title": "No surprises", "items": ["Preview uses the same render as the build", "All three languages are mandatory"] },
+    { "dot": "amber", "title": "Auditable", "items": ["Every action is recorded", "The panel never publishes through Git"] }
+  ]
+}

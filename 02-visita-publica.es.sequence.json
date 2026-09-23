@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Visita pública — cómo se sirve el sitio Vanilla",
+    "output": "docs/diagrams/02-visita-publica.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 520],
+    "legend": { "entries": { "emphasis": { "label": "petición" }, "return": { "label": "respuesta" }, "default": { "label": "mensaje" } } },
+    "column_fit": "spread",
+    "views": [
+      { "id": "peticion", "label": "Petición del visitante", "focus": ["visitante", "balanceador", "apache"], "note": "El visitante solo pide ficheros: no hay aplicación ejecutándose en el servidor." },
+      { "id": "contenido", "label": "Contenido y datos", "focus": ["apache", "vanilla", "datos"], "note": "El docroot incluye el esqueleto y los datos generados en GESTIÓN." },
+      { "id": "vista", "label": "Vista en el navegador", "focus": ["vanilla", "visitante"], "note": "La SPA se pinta en el navegador con los textos del idioma activo." }
+    ]
+  },
+  "participants": [
+    { "id": "visitante", "type": "external", "label": "Visitante", "sublabel": "navegador · Internet" },
+    { "id": "balanceador", "type": "cloud", "label": "Balanceador HTTPS", "sublabel": "aisteam.edu.gva.es" },
+    { "id": "apache", "type": "backend", "label": "Apache httpd", "sublabel": "PUBLICACIÓN · solo estáticos" },
+    { "id": "vanilla", "type": "frontend", "label": "Sitio Vanilla", "sublabel": "SPA estática · es/en/va" },
+    { "id": "datos", "type": "database", "label": "Datos de contenido", "sublabel": "assets/data/*.js · generado" }
+  ],
+  "segments": [
+    { "from": 150, "to": 240, "label": "Petición" },
+    { "from": 250, "to": 440, "label": "Contenido" }
+  ],
+  "messages": [
+    { "id": "abre-sitio", "from": "visitante", "to": "balanceador", "y": 160, "label": "abre #es/sectores", "variant": "emphasis", "note": "El idioma y la sección viajan en el hash" },
+    { "id": "reenvio", "from": "balanceador", "to": "apache", "y": 214, "label": "HTTPS · solo GET", "variant": "default" },
+    { "id": "docroot", "from": "apache", "to": "vanilla", "y": 268, "label": "sirve el docroot", "variant": "emphasis" },
+    { "id": "carga-datos", "from": "vanilla", "to": "datos", "y": 322, "label": "carga assets/data/*.js", "variant": "default" },
+    { "id": "textos", "from": "datos", "to": "vanilla", "y": 376, "label": "textos en es/en/va", "variant": "return" },
+    { "id": "pinta", "from": "vanilla", "to": "visitante", "y": 430, "label": "SPA pintada en el navegador", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "balanceador", "from": 160, "to": 435, "type": "cloud" },
+    { "participant": "apache", "from": 210, "to": 435, "type": "backend" },
+    { "participant": "vanilla", "from": 262, "to": 435, "type": "frontend" },
+    { "participant": "datos", "from": 316, "to": 387, "type": "database" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Sin backend ni base de datos", "items": ["El servidor solo entrega ficheros estáticos", "No hay consultas ni sesiones en PUBLICACIÓN", "El contenido son .js generados en GESTIÓN"] },
+    { "dot": "emerald", "title": "Tres idiomas", "items": ["es · en · va, con un slug por idioma", "Un enlace #es/sectores abre esa sección", "El idioma del enlace manda sobre el guardado"] },
+    { "dot": "amber", "title": "Privacidad por diseño", "items": ["Sin cookies y sin analítica", "Los formularios son externos y solo se enlazan", "El servidor registra la IP en sus logs"] }
+  ]
+}

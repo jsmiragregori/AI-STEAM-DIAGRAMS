@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Content publishing — from the panel to the public site",
+    "locale": "en",
+    "output": "docs/diagrams/03-publicacion-contenido.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 520],
+    "column_fit": "spread",
+    "views": [
+      { "id": "access", "label": "Authenticated access", "focus": ["editor", "acceso", "panel"], "note": "The editor signs in over TLS and authentication from the internal network." },
+      { "id": "generation", "label": "Editing and generation", "focus": ["panel", "fuentes", "loaders"], "note": "The panel saves the sources and triggers the loader through a closed action." },
+      { "id": "publishing", "label": "Instant publishing", "focus": ["loaders", "vanilla"], "note": "The loader writes assets/data over NFS: the change is already on the site." }
+    ]
+  },
+  "participants": [
+    { "id": "editor", "type": "external", "label": "CEICE editors", "sublabel": "internal network" },
+    { "id": "acceso", "type": "security", "label": "TLS + auth", "sublabel": "internal network only" },
+    { "id": "panel", "type": "frontend", "label": "Streamlit panel", "sublabel": "Python 3.12" },
+    { "id": "fuentes", "type": "database", "label": "Editorial sources", "sublabel": "content/ YAML · CSV" },
+    { "id": "loaders", "type": "backend", "label": "Node.js loaders", "sublabel": "scripts/cms.js" },
+    { "id": "vanilla", "type": "frontend", "label": "Vanilla site", "sublabel": "assets/data · NFS" }
+  ],
+  "segments": [
+    { "from": 150, "to": 235, "label": "Access" },
+    { "from": 240, "to": 285, "label": "Editing" },
+    { "from": 290, "to": 440, "label": "Publishing" }
+  ],
+  "messages": [
+    { "id": "signs-in", "from": "editor", "to": "acceso", "y": 160, "label": "HTTPS · internal network", "variant": "emphasis" },
+    { "id": "session", "from": "acceso", "to": "panel", "y": 205, "label": "authenticated session", "variant": "security" },
+    { "id": "saves", "from": "panel", "to": "fuentes", "y": 250, "label": "saves the change", "variant": "default" },
+    { "id": "regenerate", "from": "panel", "to": "loaders", "y": 300, "label": "regenerate section", "variant": "emphasis", "note": "Closed action: editors never type commands" },
+    { "id": "reads", "from": "loaders", "to": "fuentes", "y": 345, "label": "reads and validates", "variant": "default" },
+    { "id": "writes", "from": "loaders", "to": "vanilla", "y": 390, "label": "writes assets/data · NFS", "variant": "emphasis" },
+    { "id": "confirms", "from": "panel", "to": "editor", "y": 430, "label": "published instantly", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "acceso", "from": 160, "to": 210, "type": "security" },
+    { "participant": "panel", "from": 200, "to": 435, "type": "frontend" },
+    { "participant": "fuentes", "from": 245, "to": 370, "type": "database" },
+    { "participant": "loaders", "from": 295, "to": 410, "type": "backend" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Closed action", "items": ["Editors never run commands: they pick a section", "The panel resolves the script in package.json", "Timeout and output cap on every run"] },
+    { "dot": "emerald", "title": "Instant publishing", "items": ["The loader writes assets/data over NFS", "No deployment and no content promotion", "Visitors see it on the next reload"] },
+    { "dot": "amber", "title": "No accidental publishing", "items": ["The panel never runs git push", "It only writes the generated content", "Every action is recorded in the audit log"] }
+  ]
+}

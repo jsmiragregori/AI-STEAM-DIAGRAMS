@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Data and multilingual content — from sources to visitors",
+    "locale": "en",
+    "output": "docs/diagrams/05-datos-multilingues.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 540],
+    "views": [
+      { "id": "sources", "label": "Sources", "focus": ["yaml", "csv", "panel"], "note": "All content is files: YAML and CSV edited from the panel, plus media and documents." },
+      { "id": "generation", "label": "Generation", "focus": ["loader", "data", "media"], "note": "Loaders validate schema and languages, then write the .js files the site consumes." },
+      { "id": "consumption", "label": "Consumption", "focus": ["spa", "visitante"], "note": "The browser only reads static files: no queries, no database." }
+    ]
+  },
+  "stages": [
+    { "label": "Sources" },
+    { "label": "Generation" },
+    { "label": "Artifacts" },
+    { "label": "Consumption" }
+  ],
+  "nodes": [
+    { "id": "yaml", "type": "database", "label": "Editorial YAML", "sublabel": "content/** · es/en/va", "stage": 0, "row": 0, "tag": "versioned in Git" },
+    { "id": "csv", "type": "database", "label": "CSV", "sublabel": "menu · slugs · interface", "stage": 0, "row": 1 },
+    { "id": "panel", "type": "frontend", "label": "Management panel", "sublabel": "uploads media and files", "stage": 0, "row": 2 },
+    { "id": "loader", "type": "backend", "label": "Node.js loaders", "sublabel": "cms:base · schema checks", "stage": 1, "row": 1 },
+    { "id": "data", "type": "database", "label": "assets/data/*.js", "sublabel": "14 generated files", "stage": 2, "row": 0, "tag": "NFS" },
+    { "id": "media", "type": "database", "label": "media and downloads", "sublabel": "PDF · DOCX · images", "stage": 2, "row": 2 },
+    { "id": "spa", "type": "frontend", "label": "Vanilla site", "sublabel": "static SPA", "stage": 3, "row": 1 },
+    { "id": "visitante", "type": "external", "label": "Visitor", "sublabel": "browser · 3 languages", "stage": 3, "row": 2 }
+  ],
+  "flows": [
+    { "id": "yaml-loader", "from": "yaml", "to": "loader", "label": "reads and validates", "classification": "editorial content", "variant": "emphasis" },
+    { "id": "csv-loader", "from": "csv", "to": "loader", "label": "columns and slugs", "classification": "navigation", "variant": "default", "route": "straight", "labelDy": 40 },
+    { "id": "panel-media", "from": "panel", "to": "media", "label": "uploads documents", "classification": "binaries", "variant": "dashed" },
+    { "id": "loader-data", "from": "loader", "to": "data", "label": "writes the .js files", "classification": "generated artifact", "variant": "emphasis" },
+    { "id": "data-spa", "from": "data", "to": "spa", "label": "loads the .js", "classification": "read-only", "variant": "emphasis" },
+    { "id": "media-visitante", "from": "media", "to": "visitante", "label": "downloads", "classification": "read-only", "variant": "dashed" },
+    { "id": "spa-visitante", "from": "spa", "to": "visitante", "label": "view in its language", "classification": "es/en/va", "variant": "default", "labelDy": 24 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "A missing language stops the build", "items": ["Legal texts require es/en/va", "Slugs resolve per language", "The build fails instead of publishing halfway"] },
+    { "dot": "emerald", "title": "No database", "items": ["Sources are versioned files", "The panel writes YAML and CSV", "Generated .js files are the site's only input"] },
+    { "dot": "amber", "title": "From source to visitor", "items": ["YAML/CSV → loaders → assets/data", "Media and downloads are uploaded from the panel", "The browser only reads static files"] }
+  ]
+}

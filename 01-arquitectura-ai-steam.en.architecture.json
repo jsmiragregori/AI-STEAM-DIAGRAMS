@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AI-STEAM Network — architecture and publishing flow",
+    "locale": "en",
+    "output": "docs/diagrams/01-arquitectura-ai-steam.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [1060, 510],
+    "repository": {
+      "url": "https://github.com/jsmiragregori/AI-STEAM-CONTENT.git",
+      "revision": "b3980ceabc9266466efc8f690959e2354947092c",
+      "link_mode": "local-only"
+    },
+    "views": [
+      {
+        "id": "visitor",
+        "label": "Visitor from the Internet",
+        "focus": ["visitantes", "balanceador", "web", "vanilla"],
+        "note": "Static files only: no backend, no database and no server runtime."
+      },
+      {
+        "id": "editor",
+        "label": "Administrator on the internal network",
+        "focus": ["editor", "acceso", "panel", "fuentes"],
+        "note": "Access over TLS + authentication; the panel edits content/ sources and does not publish by itself."
+      },
+      {
+        "id": "publishing",
+        "label": "Content publishing",
+        "focus": ["panel", "loaders", "fuentes", "vanilla"],
+        "note": "The loader reads the sources and writes assets/data over NFS; visitors see the change on reload."
+      },
+      {
+        "id": "full",
+        "label": "From editing to the public site",
+        "focus": ["editor", "acceso", "panel", "loaders", "vanilla", "web", "balanceador", "visitantes"],
+        "note": "The full journey: edit, regenerate and serve, with no database and no content promotion."
+      }
+    ]
+  },
+  "components": [
+    { "id": "editor", "type": "external", "label": "Content editors", "sublabel": "browser · internal network", "pos": [40, 110], "size": [160, 64], "sources": [{ "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 70, "end_line": 72, "label": "editores de CEICE" }] },
+    { "id": "acceso", "type": "security", "label": "TLS + authentication", "sublabel": "internal network only", "pos": [280, 110], "size": [160, 64], "sources": [{ "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 661, "end_line": 668, "label": "exposición de GESTIÓN" }] },
+    { "id": "panel", "type": "frontend", "label": "Management panel", "sublabel": "Streamlit · Python 3.12", "tag": "admin/", "pos": [520, 110], "size": [190, 66], "sources": [{ "path": "admin/app.py", "line": 1, "label": "entrada Streamlit" }, { "path": "admin/lib/cms_runner.py", "line": 371, "label": "run_script" }, { "path": "admin/lib/auth_config.py", "line": 30, "label": "modo local" }] },
+    { "id": "loaders", "type": "backend", "label": "Node.js loaders", "sublabel": "scripts/cms.js · cms:*", "tag": "scripts/", "pos": [830, 110], "size": [190, 66], "sources": [{ "path": "scripts/cms.js", "line": 29, "end_line": 53, "label": "carga de secciones" }, { "path": "scripts/config.js", "line": 16, "end_line": 20, "label": "salida a VANILLA" }] },
+    { "id": "fuentes", "type": "database", "label": "Editorial sources", "sublabel": "content/ · YAML and CSV", "tag": "content/", "pos": [520, 250], "size": [190, 62], "sources": [{ "path": "content/network/partners.yml", "line": 1, "label": "fuente YAML" }, { "path": "content/navigation/slugs.csv", "line": 1, "label": "fuente CSV" }] },
+    { "id": "vanilla", "type": "frontend", "label": "Public Vanilla site", "sublabel": "static SPA · es/en/va", "tag": "assets/data", "pos": [830, 400], "size": [190, 66], "sources": [{ "path": "docs/ARQUITECTURA_SERVICIOS.md", "line": 86, "end_line": 92, "label": "árbol AI-STEAM-VANILLA" }, { "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 128, "end_line": 137, "label": "docroot escrito por GESTIÓN" }] },
+    { "id": "web", "type": "backend", "label": "Apache httpd", "sublabel": "static files only · no runtime", "pos": [520, 400], "size": [190, 66], "sources": [{ "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 58, "end_line": 66, "label": "PUBLICACIÓN estática" }] },
+    { "id": "balanceador", "type": "cloud", "label": "HTTPS load balancer", "sublabel": "aisteam.edu.gva.es", "pos": [280, 400], "size": [160, 64], "sources": [{ "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 49, "end_line": 50, "label": "tras balanceador" }] },
+    { "id": "visitantes", "type": "external", "label": "Internet visitors", "sublabel": "browser", "pos": [40, 400], "size": [160, 64] }
+  ],
+  "boundaries": [
+    { "kind": "security-group", "label": "MANAGEMENT (internal network) · AI-STEAM-CONTENT", "wraps": ["acceso", "panel", "loaders", "fuentes"], "pad": 22 },
+    { "kind": "region", "label": "PUBLISHING (Internet) · AI-STEAM-VANILLA", "wraps": ["balanceador", "web", "vanilla"], "pad": 22 }
+  ],
+  "connections": [
+    { "from": "editor", "to": "acceso", "label": "HTTPS · internal network", "variant": "emphasis", "labelDy": 56 },
+    { "from": "acceso", "to": "panel", "label": "forwards the session", "labelDy": 58 },
+    { "from": "panel", "to": "loaders", "label": "regenerate section", "variant": "emphasis" },
+    { "from": "panel", "to": "fuentes", "label": "edits YAML/CSV", "labelDy": 24 },
+    { "from": "loaders", "to": "fuentes", "label": "reads sources" },
+    { "from": "loaders", "to": "vanilla", "label": "writes assets/{data,media,downloads} · NFS", "variant": "emphasis", "labelDy": 24 },
+    { "from": "visitantes", "to": "balanceador", "label": "HTTPS" },
+    { "from": "balanceador", "to": "web", "label": "HTTPS · GET only", "labelDy": 58 },
+    { "from": "web", "to": "vanilla", "label": "serves the docroot" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "No database", "items": ["Content is files: YAML and CSV under content/", "The panel edits sources; loaders generate the .js data", "The site runs no code: it only serves static files"] },
+    { "dot": "emerald", "title": "Direct publishing over NFS", "items": ["MANAGEMENT writes only data, media and downloads", "The skeleton (index.html, js, css) is never touched", "Regenerating is instantly visible on the public site"] },
+    { "dot": "amber", "title": "Two separate accesses", "items": ["Internet: read-only behind load balancer and HTTPS", "Internal network: TLS + local authentication (Argon2id)", "Code ships through deployment pipelines; content does not"] }
+  ]
+}

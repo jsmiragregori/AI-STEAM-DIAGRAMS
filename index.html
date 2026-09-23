@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-STEAM Network — Diagramas</title>
+<style>
+  :root {
+    --bg: #f4f6f9;
+    --panel: #ffffff;
+    --text: #1f2937;
+    --muted: #55606f;
+    --border: #dde3ea;
+    --accent: #115e59;
+    --accent-strong: #0f4c48;
+    --accent-soft: #e6f2f1;
+    --chip: #eef2f6;
+    --focus: #1d4ed8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --panel: #1e293b;
+      --text: #e2e8f0;
+      --muted: #a3aec0;
+      --border: #334155;
+      --accent: #5eead4;
+      --accent-strong: #99f6e4;
+      --accent-soft: #134e4a;
+      --chip: #263449;
+      --focus: #93c5fd;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.55 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+  header.masthead {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .brand-mark {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 10px;
+    vertical-align: 2px;
+  }
+  h1 {
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
+    line-height: 1.2;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    margin: 0;
+    color: var(--muted);
+    max-width: 62ch;
+  }
+  .lang-switch {
+    display: inline-flex;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .lang-switch button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .lang-switch button[aria-pressed="true"] {
+    background: var(--accent);
+    color: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    .lang-switch button[aria-pressed="true"] { color: #0f172a; }
+  }
+  .meta-line {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin: 18px 0 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+  }
+  .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .num {
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+  }
+  .chip {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: var(--chip);
+    border-radius: 999px;
+    padding: 3px 10px;
+    white-space: nowrap;
+  }
+  .card h2 {
+    font-size: 1.08rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+  .card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    flex: 1;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .open {
+    display: inline-block;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: 9px;
+  }
+  .open:hover { background: var(--accent-strong); }
+  @media (prefers-color-scheme: dark) {
+    .open { color: #0f172a; }
+  }
+  .alt {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  footer {
+    margin-top: 36px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <h1><span class="brand-mark" aria-hidden="true"></span><span id="page-title">AI-STEAM Network — Diagramas</span></h1>
+      <p class="lede" id="page-lede">Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.</p>
+    </div>
+    <div class="lang-switch" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-es" lang="es" aria-pressed="true">Español</button>
+      <button type="button" id="lang-en" lang="en" aria-pressed="false">English</button>
+    </div>
+  </header>
+  <p class="meta-line"><span id="meta-count">6 temas · 12 diagramas</span><span id="meta-hint">Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.</span></p>
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+  <footer>
+    <span id="footer-text">AI-STEAM Network · documentación de la aplicación</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var STORAGE_KEY = "ai-steam-diagrams-lang";
+  var diagrams = [
+    {
+      num: "01",
+      kind: { es: "Arquitectura", en: "Architecture" },
+      title: { es: "Arquitectura y flujo de publicación", en: "Architecture and publishing flow" },
+      desc: {
+        es: "Vista completa de las dos aplicaciones —GESTIÓN en la red interna y PUBLICACIÓN en Internet— y del acoplamiento por NFS.",
+        en: "Complete view of both applications —MANAGEMENT on the internal network and PUBLISHING on the Internet— and the NFS coupling."
+      },
+      files: { es: "01-arquitectura-ai-steam.es.html", en: "01-arquitectura-ai-steam.en.html" }
+    },
+    {
+      num: "02",
+      kind: { es: "Secuencia", en: "Sequence" },
+      title: { es: "Visita pública", en: "Public visit" },
+      desc: {
+        es: "Qué ocurre desde que un visitante abre el sitio hasta que la sección se pinta: solo ficheros estáticos, sin backend ni base de datos.",
+        en: "What happens from the moment a visitor opens the site until the section renders: static files only, no backend and no database."
+      },
+      files: { es: "02-visita-publica.es.html", en: "02-visita-publica.en.html" }
+    },
+    {
+      num: "03",
+      kind: { es: "Secuencia", en: "Sequence" },
+      title: { es: "Publicación de contenido", en: "Content publishing" },
+      desc: {
+        es: "El recorrido de una edición: acceso autenticado, panel, fuentes editoriales, loaders y escritura por NFS en el sitio.",
+        en: "The journey of an edit: authenticated access, panel, editorial sources, loaders and the NFS write into the site."
+      },
+      files: { es: "03-publicacion-contenido.es.html", en: "03-publicacion-contenido.en.html" }
+    },
+    {
+      num: "04",
+      kind: { es: "Flujo de trabajo", en: "Workflow" },
+      title: { es: "Flujo editorial", en: "Editorial workflow" },
+      desc: {
+        es: "Pasos del editor y del panel: validación que falla cerrado, previsualización fiel al build, regeneración y rama de corrección.",
+        en: "Editor and panel steps: fail-closed validation, preview identical to the build, regeneration and the correction branch."
+      },
+      files: { es: "04-flujo-editorial.es.html", en: "04-flujo-editorial.en.html" }
+    },
+    {
+      num: "05",
+      kind: { es: "Flujo de datos", en: "Data flow" },
+      title: { es: "Datos y multilingüismo", en: "Data and multilingual content" },
+      desc: {
+        es: "De las fuentes YAML y CSV a los tres idiomas del sitio, pasando por los generadores, sin base de datos.",
+        en: "From YAML and CSV sources to the site's three languages, through the generators, with no database."
+      },
+      files: { es: "05-datos-multilingues.es.html", en: "05-datos-multilingues.en.html" }
+    },
+    {
+      num: "06",
+      kind: { es: "Arquitectura", en: "Architecture" },
+      title: { es: "Seguridad y cumplimiento", en: "Security and compliance" },
+      desc: {
+        es: "Control de acceso con autenticación local, auditoría con retención, privacidad sin cookies y declaración de accesibilidad.",
+        en: "Access control with local authentication, audit retention, cookie-free privacy and the accessibility statement."
+      },
+      files: { es: "06-seguridad-cumplimiento.es.html", en: "06-seguridad-cumplimiento.en.html" }
+    }
+  ];
+  var copy = {
+    es: {
+      title: "AI-STEAM Network — Diagramas",
+      lede: "Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.",
+      count: "6 temas · 12 diagramas",
+      hint: "Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.",
+      open: "Abrir diagrama",
+      alt: "También en inglés",
+      altLabel: "Ver este diagrama en inglés",
+      footer: "AI-STEAM Network · documentación de la aplicación"
+    },
+    en: {
+      title: "AI-STEAM Network — Diagrams",
+      lede: "Architecture, usage and compliance of the application, in Spanish and English.",
+      count: "6 topics · 12 diagrams",
+      hint: "Each diagram opens in a new tab with its own guided views, search and export.",
+      open: "Open diagram",
+      alt: "Also in Spanish",
+      altLabel: "View this diagram in Spanish",
+      footer: "AI-STEAM Network · application documentation"
+    }
+  };
+  var grid = document.getElementById("grid");
+
+  function render(lang) {
+    var t = copy[lang];
+    var other = lang === "es" ? "en" : "es";
+    document.documentElement.lang = lang;
+    document.title = t.title;
+    document.getElementById("page-title").textContent = t.title;
+    document.getElementById("page-lede").textContent = t.lede;
+    document.getElementById("meta-count").textContent = t.count;
+    document.getElementById("meta-hint").textContent = t.hint;
+    document.getElementById("footer-text").textContent = t.footer;
+    document.getElementById("lang-es").setAttribute("aria-pressed", String(lang === "es"));
+    document.getElementById("lang-en").setAttribute("aria-pressed", String(lang === "en"));
+
+    var html = "";
+    diagrams.forEach(function (d) {
+      html += '<article class="card">' +
+        '<div class="card-top"><span class="num">' + d.num + '</span>' +
+        '<span class="chip">' + d.kind[lang] + '</span></div>' +
+        '<h2>' + d.title[lang] + '</h2>' +
+        '<p>' + d.desc[lang] + '</p>' +
+        '<div class="actions">' +
+        '<a class="open" href="' + d.files[lang] + '" target="_blank" rel="noopener">' + t.open + '</a>' +
+        '<a class="alt" href="' + d.files[other] + '" target="_blank" rel="noopener" hreflang="' + other + '" title="' + t.altLabel + '">' + t.alt + '</a>' +
+        '</div></article>';
+    });
+    grid.innerHTML = html;
+  }
+
+  function setLang(lang) {
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+    render(lang);
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  var initial = stored === "en" ? "en" : "es";
+  render(initial);
+  document.getElementById("lang-es").addEventListener("click", function () { setLang("es"); });
+  document.getElementById("lang-en").addEventListener("click", function () { setLang("en"); });
+})();
+</script>
+</body>
+</html>

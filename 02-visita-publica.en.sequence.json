@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Public visit — how the Vanilla site is served",
+    "locale": "en",
+    "output": "docs/diagrams/02-visita-publica.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 520],
+    "column_fit": "spread",
+    "views": [
+      { "id": "request", "label": "Visitor request", "focus": ["visitante", "balanceador", "apache"], "note": "The visitor only requests files: no application runs on the server." },
+      { "id": "content", "label": "Content and data", "focus": ["apache", "vanilla", "datos"], "note": "The docroot holds the skeleton plus the data generated in MANAGEMENT." },
+      { "id": "render", "label": "Rendering in the browser", "focus": ["vanilla", "visitante"], "note": "The SPA renders in the browser with the active language texts." }
+    ]
+  },
+  "participants": [
+    { "id": "visitante", "type": "external", "label": "Visitor", "sublabel": "browser · Internet" },
+    { "id": "balanceador", "type": "cloud", "label": "HTTPS load balancer", "sublabel": "aisteam.edu.gva.es" },
+    { "id": "apache", "type": "backend", "label": "Apache httpd", "sublabel": "PUBLISHING · static files only" },
+    { "id": "vanilla", "type": "frontend", "label": "Vanilla site", "sublabel": "static SPA · es/en/va" },
+    { "id": "datos", "type": "database", "label": "Content data", "sublabel": "assets/data/*.js · generated" }
+  ],
+  "segments": [
+    { "from": 150, "to": 240, "label": "Request" },
+    { "from": 250, "to": 440, "label": "Content" }
+  ],
+  "messages": [
+    { "id": "open-site", "from": "visitante", "to": "balanceador", "y": 160, "label": "opens #es/sectores", "variant": "emphasis", "note": "Language and section travel in the hash" },
+    { "id": "forward", "from": "balanceador", "to": "apache", "y": 214, "label": "HTTPS · GET only", "variant": "default" },
+    { "id": "docroot", "from": "apache", "to": "vanilla", "y": 268, "label": "serves the docroot", "variant": "emphasis" },
+    { "id": "load-data", "from": "vanilla", "to": "datos", "y": 322, "label": "loads assets/data/*.js", "variant": "default" },
+    { "id": "texts", "from": "datos", "to": "vanilla", "y": 376, "label": "texts in es/en/va", "variant": "return" },
+    { "id": "render", "from": "vanilla", "to": "visitante", "y": 430, "label": "SPA rendered in the browser", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "balanceador", "from": 160, "to": 435, "type": "cloud" },
+    { "participant": "apache", "from": 210, "to": 435, "type": "backend" },
+    { "participant": "vanilla", "from": 262, "to": 435, "type": "frontend" },
+    { "participant": "datos", "from": 316, "to": 387, "type": "database" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "No backend, no database", "items": ["The server only delivers static files", "No queries and no sessions in PUBLISHING", "Content is .js data generated in MANAGEMENT"] },
+    { "dot": "emerald", "title": "Three languages", "items": ["es · en · va, with one slug per language", "A #es/sectores link opens that section", "The link language overrides the stored one"] },
+    { "dot": "amber", "title": "Privacy by design", "items": ["No cookies and no analytics", "Forms are external and only linked", "The server logs the visitor IP"] }
+  ]
+}

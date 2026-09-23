@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Datos y multilingüismo — de las fuentes al visitante",
+    "output": "docs/diagrams/05-datos-multilingues.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 540],
+    "legend": { "entries": { "emphasis": { "label": "flujo principal" }, "dashed": { "label": "flujo secundario" }, "database": { "label": "almacén" }, "default": { "label": "flujo de datos" } } },
+    "views": [
+      { "id": "fuentes", "label": "Fuentes", "focus": ["yaml", "csv", "panel"], "note": "Todo el contenido son ficheros: YAML y CSV editados desde el panel, más media y documentos." },
+      { "id": "generacion", "label": "Generación", "focus": ["loader", "data", "media"], "note": "Los loaders validan esquema e idiomas y escriben los .js que consume el sitio." },
+      { "id": "consumo", "label": "Consumo", "focus": ["spa", "visitante"], "note": "El navegador solo lee ficheros estáticos: sin consultas ni base de datos." }
+    ]
+  },
+  "stages": [
+    { "label": "Fuentes" },
+    { "label": "Generación" },
+    { "label": "Artefactos" },
+    { "label": "Consumo" }
+  ],
+  "nodes": [
+    { "id": "yaml", "type": "database", "label": "YAML editorial", "sublabel": "content/** · es/en/va", "stage": 0, "row": 0, "tag": "versión en Git" },
+    { "id": "csv", "type": "database", "label": "CSV", "sublabel": "menú · slugs · interfaz", "stage": 0, "row": 1 },
+    { "id": "panel", "type": "frontend", "label": "Panel de gestión", "sublabel": "sube media y fichas", "stage": 0, "row": 2 },
+    { "id": "loader", "type": "backend", "label": "Loaders Node.js", "sublabel": "cms:base · valida esquema", "stage": 1, "row": 1 },
+    { "id": "data", "type": "database", "label": "assets/data/*.js", "sublabel": "14 ficheros generados", "stage": 2, "row": 0, "tag": "NFS" },
+    { "id": "media", "type": "database", "label": "media y downloads", "sublabel": "PDF · DOCX · imágenes", "stage": 2, "row": 2 },
+    { "id": "spa", "type": "frontend", "label": "Sitio Vanilla", "sublabel": "SPA estática", "stage": 3, "row": 1 },
+    { "id": "visitante", "type": "external", "label": "Visitante", "sublabel": "navegador · 3 idiomas", "stage": 3, "row": 2 }
+  ],
+  "flows": [
+    { "id": "yaml-loader", "from": "yaml", "to": "loader", "label": "lee y valida", "classification": "contenido editorial", "variant": "emphasis" },
+    { "id": "csv-loader", "from": "csv", "to": "loader", "label": "columnas y slugs", "classification": "navegación", "variant": "default", "route": "straight", "labelDy": 40 },
+    { "id": "panel-media", "from": "panel", "to": "media", "label": "sube documentos", "classification": "binarios", "variant": "dashed" },
+    { "id": "loader-data", "from": "loader", "to": "data", "label": "escribe los .js", "classification": "artefacto generado", "variant": "emphasis" },
+    { "id": "data-spa", "from": "data", "to": "spa", "label": "carga los .js", "classification": "solo lectura", "variant": "emphasis" },
+    { "id": "media-visitante", "from": "media", "to": "visitante", "label": "descargas", "classification": "solo lectura", "variant": "dashed" },
+    { "id": "spa-visitante", "from": "spa", "to": "visitante", "label": "vista en su idioma", "classification": "es/en/va", "variant": "default", "labelDy": 24 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Un idioma ausente detiene el build", "items": ["Los textos legales exigen es/en/va", "El slug se resuelve por idioma", "El build falla en vez de publicar a medias"] },
+    { "dot": "emerald", "title": "Sin base de datos", "items": ["Las fuentes son ficheros versionados", "El panel escribe YAML y CSV", "Los .js generados son la única entrada del sitio"] },
+    { "dot": "amber", "title": "De la fuente al visitante", "items": ["YAML/CSV → loaders → assets/data", "media y downloads se suben desde el panel", "El navegador solo lee ficheros estáticos"] }
+  ]
+}

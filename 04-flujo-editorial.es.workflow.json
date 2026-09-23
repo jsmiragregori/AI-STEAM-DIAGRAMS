@@ -1,0 +1,57 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Flujo editorial — edición y publicación",
+    "output": "docs/diagrams/04-flujo-editorial.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [1180, 668],
+    "legend": { "entries": { "frontend": { "label": "Interfaz" }, "backend": { "label": "Servicio" }, "security": { "label": "Seguridad" }, "external": { "label": "Actor externo" } } },
+    "views": [
+      { "id": "editar", "label": "Editar", "focus": ["abrir", "editar", "validar"], "note": "El editor abre una sección, cambia el contenido y el panel lo valida antes de guardar." },
+      { "id": "previsualizar", "label": "Previsualizar", "focus": ["validar", "previa", "regenerar"], "note": "La previa usa la misma función que el build: lo que se ve es lo que se publica." },
+      { "id": "publicar", "label": "Publicar", "focus": ["regenerar", "loader", "visible"], "note": "El loader escribe assets/data por NFS y el cambio se ve al instante." },
+      { "id": "corregir", "label": "Corregir", "focus": ["validar", "corregir", "editar"], "note": "Si la validación falla, no se guarda: se corrige y se reintenta." }
+    ]
+  },
+  "lanes": [
+    { "id": "edicion", "label": "Edición · CEICE" },
+    { "id": "panel", "label": "Panel de gestión" },
+    { "id": "generacion", "label": "Generación y publicación" },
+    { "id": "incidencias", "label": "Revisión y corrección", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "fase-editar", "label": "Editar", "fromCol": 0, "toCol": 1 },
+    { "id": "fase-validar", "label": "Validar y previsualizar", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "fase-publicar", "label": "Publicar", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "groups": [
+    { "id": "gate", "label": "Puerta de validación", "lane": "panel", "fromCol": 2, "toCol": 2, "variant": "security" }
+  ],
+  "mainPath": ["abrir", "editar", "validar", "previa", "regenerar", "loader", "visible"],
+  "nodes": [
+    { "id": "abrir", "lane": "edicion", "col": 0, "type": "external", "label": "Abrir sección", "sublabel": "menú del panel", "width": 132 },
+    { "id": "editar", "lane": "edicion", "col": 1, "type": "external", "label": "Editar contenido", "sublabel": "YAML/CSV · es/en/va", "width": 132 },
+    { "id": "validar", "lane": "panel", "col": 2, "type": "security", "label": "Validar", "sublabel": "esquema y campos", "tag": "falla cerrado", "width": 132 },
+    { "id": "previa", "lane": "panel", "col": 3, "type": "frontend", "label": "Previsualizar", "sublabel": "mismo render que el build", "width": 132 },
+    { "id": "regenerar", "lane": "panel", "col": 4, "type": "backend", "label": "Regenerar sección", "sublabel": "acción cerrada cms:*", "width": 132 },
+    { "id": "loader", "lane": "generacion", "col": 4, "type": "backend", "label": "Loader y escritura", "sublabel": "assets/data · NFS", "width": 132 },
+    { "id": "visible", "lane": "generacion", "col": 5, "type": "frontend", "label": "Visible al instante", "sublabel": "sin despliegue", "width": 132 },
+    { "id": "corregir", "lane": "incidencias", "col": 2, "type": "security", "label": "Corregir y reintentar", "sublabel": "error de validación", "width": 152 }
+  ],
+  "edges": [
+    { "id": "abrir-editar", "from": "abrir", "to": "editar", "variant": "default" },
+    { "id": "editar-validar", "from": "editar", "to": "validar", "label": "guardar cambios", "variant": "emphasis", "role": "main" },
+    { "id": "validar-previa", "from": "validar", "to": "previa", "label": "sin errores", "variant": "default", "role": "main" },
+    { "id": "previa-regenerar", "from": "previa", "to": "regenerar", "label": "aprobada", "variant": "emphasis", "role": "main" },
+    { "id": "regenerar-loader", "from": "regenerar", "to": "loader", "label": "ejecuta cms:*", "variant": "default", "role": "main" },
+    { "id": "loader-visible", "from": "loader", "to": "visible", "label": "assets/data · NFS", "variant": "emphasis", "role": "main" },
+    { "id": "validar-corregir", "from": "validar", "to": "corregir", "label": "error de validación", "variant": "security", "role": "error" },
+    { "id": "corregir-editar", "from": "corregir", "to": "editar", "label": "revisar", "variant": "dashed", "role": "branch" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Falla cerrado", "items": ["Se valida antes de escribir", "Sin guardar no hay regeneración"] },
+    { "dot": "emerald", "title": "Sin sorpresas", "items": ["La previa usa el mismo render que el build", "Los tres idiomas son obligatorios"] },
+    { "dot": "amber", "title": "Auditable", "items": ["Cada acción queda registrada", "El panel nunca publica por Git"] }
+  ]
+}

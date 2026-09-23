@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Seguridad y cumplimiento — controles de la aplicación",
+    "output": "docs/diagrams/06-seguridad-cumplimiento.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [1060, 510],
+    "repository": {
+      "url": "https://github.com/jsmiragregori/AI-STEAM-CONTENT.git",
+      "revision": "b3980ceabc9266466efc8f690959e2354947092c",
+      "link_mode": "local-only"
+    },
+    "views": [
+      { "id": "acceso-interno", "label": "Acceso interno", "focus": ["editores", "acceso", "panel", "auth"], "note": "Solo la red interna alcanza el panel; las credenciales viven en un almacén local privado." },
+      { "id": "trazabilidad", "label": "Trazabilidad", "focus": ["panel", "auth", "audit"], "note": "Quién hace qué y cuándo queda registrado, con retención definida." },
+      { "id": "sitio-publico", "label": "Sitio público", "focus": ["visitantes", "balanceador", "apache", "vanilla"], "note": "El sitio no ejecuta código ni instala cookies: solo sirve ficheros estáticos." }
+    ]
+  },
+  "components": [
+    { "id": "editores", "type": "external", "label": "Editores", "sublabel": "red interna", "pos": [40, 110], "size": [160, 64] },
+    { "id": "acceso", "type": "security", "label": "TLS + autenticación", "sublabel": "solo red interna", "pos": [280, 110], "size": [160, 64], "sources": [{ "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 661, "end_line": 668, "label": "exposición de GESTIÓN" }] },
+    { "id": "panel", "type": "frontend", "label": "Panel Streamlit", "sublabel": "sesiones · roles", "pos": [520, 110], "size": [190, 66], "sources": [{ "path": "admin/lib/sessions.py", "line": 1, "label": "modelo de sesiones" }, { "path": "admin/lib/identity.py", "line": 64, "label": "modos de identidad" }] },
+    { "id": "loaders", "type": "backend", "label": "Loaders Node.js", "sublabel": "sin shell · fallo cerrado", "pos": [830, 110], "size": [190, 66], "sources": [{ "path": "admin/lib/cms_runner.py", "line": 1, "end_line": 5, "label": "ejecución sin shell" }] },
+    { "id": "auth", "type": "database", "label": "Almacén de cuentas", "sublabel": "admin/.auth · Argon2id", "pos": [430, 250], "size": [190, 62], "sources": [{ "path": "admin/lib/auth_config.py", "line": 30, "label": "modo local" }, { "path": "admin/lib/passwords.py", "line": 1, "label": "hashing de contraseñas" }] },
+    { "id": "audit", "type": "database", "label": "Registro de auditoría", "sublabel": "quién · qué · cuándo · 24 meses", "pos": [660, 250], "size": [190, 62], "sources": [{ "path": "admin/lib/audit.py", "line": 1, "label": "registro acotado" }, { "path": "admin/lib/audit_retention.py", "line": 1, "label": "retención" }] },
+    { "id": "visitantes", "type": "external", "label": "Visitantes", "sublabel": "navegador · Internet", "pos": [40, 400], "size": [160, 64] },
+    { "id": "balanceador", "type": "cloud", "label": "Balanceador HTTPS", "sublabel": "aisteam.edu.gva.es", "pos": [280, 400], "size": [160, 64] },
+    { "id": "apache", "type": "backend", "label": "Apache httpd", "sublabel": "solo estáticos", "pos": [520, 400], "size": [190, 66], "sources": [{ "path": "docs/Despliegues/Redhat/ARQUITECTURA_DESPLIEGUE_DGTIC.md", "line": 58, "end_line": 66, "label": "PUBLICACIÓN estática" }] },
+    { "id": "vanilla", "type": "frontend", "label": "Sitio Vanilla", "sublabel": "sin cookies · sin analítica", "pos": [830, 400], "size": [190, 66] }
+  ],
+  "boundaries": [
+    { "kind": "security-group", "label": "GESTIÓN (red interna) · datos personales", "wraps": ["acceso", "panel", "loaders", "auth", "audit"], "pad": 22 },
+    { "kind": "region", "label": "PUBLICACIÓN (Internet) · sitio público", "wraps": ["balanceador", "apache", "vanilla"], "pad": 22 }
+  ],
+  "connections": [
+    { "from": "editores", "to": "acceso", "label": "HTTPS · red interna", "variant": "emphasis", "labelDy": 56 },
+    { "from": "acceso", "to": "panel", "label": "sesión autenticada", "labelDy": 58 },
+    { "from": "panel", "to": "auth", "label": "verifica credenciales", "variant": "security", "fromSide": "bottom", "toSide": "top", "labelDy": 30 },
+    { "from": "panel", "to": "audit", "label": "registra cada acción", "variant": "dashed", "fromSide": "bottom", "toSide": "top" },
+    { "from": "panel", "to": "loaders", "label": "acción cerrada" },
+    { "from": "loaders", "to": "vanilla", "label": "escribe assets/data · NFS", "variant": "emphasis", "labelDy": 24 },
+    { "from": "visitantes", "to": "balanceador", "label": "HTTPS" },
+    { "from": "balanceador", "to": "apache", "label": "HTTPS · solo GET", "labelDy": 58 },
+    { "from": "apache", "to": "vanilla", "label": "sirve estáticos" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Privacidad", "items": ["Sin cookies ni analítica en el sitio", "Formularios externos, solo enlazados", "El servidor registra la IP en sus logs"] },
+    { "dot": "emerald", "title": "Control de acceso", "items": ["Autenticación local Argon2id", "Roles editor y superadmin", "Sesiones con caducidad y bloqueo"] },
+    { "dot": "amber", "title": "Cumplimiento", "items": ["DPD consultado (RGPD)", "Declaración de accesibilidad publicada", "Auditoría con retención de 24 meses"] }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Publicación de contenido — del panel al sitio público",
+    "output": "docs/diagrams/03-publicacion-contenido.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [1040, 520],
+    "legend": { "entries": { "emphasis": { "label": "petición" }, "return": { "label": "respuesta" }, "security": { "label": "seguridad" }, "default": { "label": "mensaje" } } },
+    "column_fit": "spread",
+    "views": [
+      { "id": "acceso", "label": "Acceso autenticado", "focus": ["editor", "acceso", "panel"], "note": "El editor entra por TLS y autenticación desde la red interna." },
+      { "id": "generacion", "label": "Edición y generación", "focus": ["panel", "fuentes", "loaders"], "note": "El panel guarda las fuentes y lanza el loader con una acción cerrada." },
+      { "id": "publicacion", "label": "Publicación inmediata", "focus": ["loaders", "vanilla"], "note": "El loader escribe assets/data por NFS: el cambio ya está en el sitio." }
+    ]
+  },
+  "participants": [
+    { "id": "editor", "type": "external", "label": "Editores CEICE", "sublabel": "red interna" },
+    { "id": "acceso", "type": "security", "label": "TLS + autenticación", "sublabel": "solo red interna" },
+    { "id": "panel", "type": "frontend", "label": "Panel Streamlit", "sublabel": "Python 3.12" },
+    { "id": "fuentes", "type": "database", "label": "Fuentes editoriales", "sublabel": "content/ YAML · CSV" },
+    { "id": "loaders", "type": "backend", "label": "Loaders Node.js", "sublabel": "scripts/cms.js" },
+    { "id": "vanilla", "type": "frontend", "label": "Sitio Vanilla", "sublabel": "assets/data · NFS" }
+  ],
+  "segments": [
+    { "from": 150, "to": 235, "label": "Acceso" },
+    { "from": 240, "to": 285, "label": "Edición" },
+    { "from": 290, "to": 440, "label": "Publicación" }
+  ],
+  "messages": [
+    { "id": "entra", "from": "editor", "to": "acceso", "y": 160, "label": "HTTPS · red interna", "variant": "emphasis" },
+    { "id": "sesion", "from": "acceso", "to": "panel", "y": 205, "label": "sesión autenticada", "variant": "security" },
+    { "id": "guarda", "from": "panel", "to": "fuentes", "y": 250, "label": "guarda el cambio", "variant": "default" },
+    { "id": "regenerar", "from": "panel", "to": "loaders", "y": 300, "label": "regenerar sección", "variant": "emphasis", "note": "Acción cerrada: el editor no escribe comandos" },
+    { "id": "lee", "from": "loaders", "to": "fuentes", "y": 345, "label": "lee y valida", "variant": "default" },
+    { "id": "escribe", "from": "loaders", "to": "vanilla", "y": 390, "label": "escribe assets/data · NFS", "variant": "emphasis" },
+    { "id": "confirma", "from": "panel", "to": "editor", "y": 430, "label": "publicado al instante", "variant": "return" }
+  ],
+  "activations": [
+    { "participant": "acceso", "from": 160, "to": 210, "type": "security" },
+    { "participant": "panel", "from": 200, "to": 435, "type": "frontend" },
+    { "participant": "fuentes", "from": 245, "to": 370, "type": "database" },
+    { "participant": "loaders", "from": 295, "to": 410, "type": "backend" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Acción cerrada", "items": ["El editor no ejecuta comandos: elige sección", "El panel resuelve el script en package.json", "Timeout y tope de salida en cada ejecución"] },
+    { "dot": "emerald", "title": "Publicación inmediata", "items": ["El loader escribe por NFS en assets/data", "No hay despliegue ni promoción de contenido", "El visitante lo ve en la siguiente recarga"] },
+    { "dot": "amber", "title": "Sin publicación accidental", "items": ["El panel no hace git push: no publica", "Solo escribe el contenido generado", "Cada acción queda en la auditoría"] }
+  ]
+}
