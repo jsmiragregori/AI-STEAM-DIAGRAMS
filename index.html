@@ -4,216 +4,170 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI-STEAM Network — Diagramas</title>
+<link rel="preload" href="./assets/fonts/instrument-sans/instrument-sans-v4-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+  /* Tokens tomados de AI-STEAM-VANILLA (assets/css/redesign.css), igual que AI-STEAM-INDICADORES. */
+  @font-face {
+    font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url("./assets/fonts/instrument-sans/instrument-sans-v4-latin-ext.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  @font-face {
+    font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap;
+    src: url("./assets/fonts/instrument-sans/instrument-sans-v4-latin.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
   :root {
-    --bg: #f4f6f9;
-    --panel: #ffffff;
-    --text: #1f2937;
-    --muted: #55606f;
-    --border: #dde3ea;
-    --accent: #115e59;
-    --accent-strong: #0f4c48;
-    --accent-soft: #e6f2f1;
-    --chip: #eef2f6;
-    --focus: #1d4ed8;
+    --canvas: #FFFDF9;
+    --surface: #FFFFFF;
+    --text: #1E1B4B;
+    --muted: #5B5880;
+    --blue: #5620F6;
+    --purple: #4918AD;
+    --beige: #FFF4E1;
+    --line: rgb(86 32 246 / .10);
+    --line-strong: rgb(86 32 246 / .22);
+    --shadow: 0 10px 30px -12px rgb(86 32 246 / .08);
+    --shadow-hover: 0 18px 40px -14px rgb(86 32 246 / .22);
+    --card-grad: linear-gradient(to bottom, #FFFFFF 0%, #FFF4E1 100%);
+    --hero: linear-gradient(135deg, #4918AD 0%, #521DE2 55%, #5620F6 100%);
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f172a;
-      --panel: #1e293b;
-      --text: #e2e8f0;
-      --muted: #a3aec0;
-      --border: #334155;
-      --accent: #5eead4;
-      --accent-strong: #99f6e4;
-      --accent-soft: #134e4a;
-      --chip: #263449;
-      --focus: #93c5fd;
+    :root:not([data-theme="light"]) {
+      --canvas: #110E24; --surface: #1A1633; --text: #EEEBFF; --muted: #ABA5D0;
+      --blue: #9C80FF; --purple: #B7A4FF; --beige: #2A2440;
+      --line: rgb(156 128 255 / .16); --line-strong: rgb(156 128 255 / .32);
+      --shadow: 0 10px 30px -12px rgb(0 0 0 / .5); --shadow-hover: 0 18px 40px -14px rgb(0 0 0 / .6);
+      --card-grad: linear-gradient(to bottom, #1A1633 0%, #221C3F 100%);
+      color-scheme: dark;
     }
+  }
+  :root[data-theme="dark"] {
+    --canvas: #110E24; --surface: #1A1633; --text: #EEEBFF; --muted: #ABA5D0;
+    --blue: #9C80FF; --purple: #B7A4FF; --beige: #2A2440;
+    --line: rgb(156 128 255 / .16); --line-strong: rgb(156 128 255 / .32);
+    --shadow: 0 10px 30px -12px rgb(0 0 0 / .5); --shadow-hover: 0 18px 40px -14px rgb(0 0 0 / .6);
+    --card-grad: linear-gradient(to bottom, #1A1633 0%, #221C3F 100%);
+    color-scheme: dark;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.55 "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    margin: 0; background: var(--canvas); color: var(--text);
+    font-family: "Instrument Sans", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1rem; line-height: 1.6; -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent); }
-  a:focus-visible, button:focus-visible {
-    outline: 3px solid var(--focus);
-    outline-offset: 2px;
-    border-radius: 4px;
+  a { color: var(--blue); text-underline-offset: 3px; }
+  a:hover { color: var(--purple); }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+  @media (max-width: 640px) { .wrap { padding: 0 1rem; } }
+  .skip { position: absolute; left: -999px; top: .5rem; background: var(--surface); padding: .5rem 1rem; z-index: 100; }
+  .skip:focus { left: 1rem; }
+
+  /* Cabecera */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
   }
-  .wrap {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 40px 24px 64px;
-  }
-  header.masthead {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 4rem; }
+  .brand { display: flex; align-items: center; gap: .75rem; min-width: 0; }
   .brand-mark {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent);
-    margin-right: 10px;
-    vertical-align: 2px;
+    width: 2.5rem; height: 2.5rem; border-radius: .375rem; flex-shrink: 0;
+    background: #5620F6; color: #fff; font-weight: 700; font-size: 1.15rem;
+    display: flex; align-items: center; justify-content: center;
   }
-  h1 {
-    font-size: clamp(1.5rem, 2.6vw, 2rem);
-    line-height: 1.2;
-    margin: 0 0 6px;
-    letter-spacing: -0.01em;
+  .brand-name { display: block; font-weight: 700; font-size: 1.15rem; color: var(--blue); line-height: 1.1; }
+  .brand-sub { display: block; font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .lang { display: flex; border: 1px solid var(--line-strong); border-radius: 999px; padding: 2px; flex-shrink: 0; }
+  .lang button {
+    font: inherit; font-size: .8rem; font-weight: 600; border: 0; background: transparent; color: var(--text);
+    padding: .3rem .75rem; border-radius: 999px; cursor: pointer; min-height: 32px;
   }
-  .lede {
-    margin: 0;
-    color: var(--muted);
-    max-width: 62ch;
+  .lang button[aria-pressed="true"] { background: #5620F6; color: #fff; }
+
+  /* Hero */
+  .hero { background: var(--hero); color: #fff; padding: 4.5rem 0 5.5rem; position: relative; overflow: hidden; }
+  .hero::after {
+    content: ""; position: absolute; right: -8rem; top: -8rem; width: 28rem; height: 28rem; border-radius: 50%;
+    background: radial-gradient(circle, rgb(255 244 225 / .18), transparent 70%);
   }
-  .lang-switch {
-    display: inline-flex;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 3px;
-    gap: 2px;
+  .hero .wrap { position: relative; z-index: 1; }
+  .eyebrow {
+    display: inline-block; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    background: rgb(255 255 255 / .14); border: 1px solid rgb(255 255 255 / .25); padding: .3rem .8rem; border-radius: 999px;
   }
-  .lang-switch button {
-    appearance: none;
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-    font: inherit;
-    font-weight: 600;
-    padding: 7px 16px;
-    border-radius: 999px;
-    cursor: pointer;
-  }
-  .lang-switch button[aria-pressed="true"] {
-    background: var(--accent);
-    color: #ffffff;
-  }
-  @media (prefers-color-scheme: dark) {
-    .lang-switch button[aria-pressed="true"] { color: #0f172a; }
-  }
-  .meta-line {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 18px;
-    align-items: center;
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin: 18px 0 26px;
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 18px;
-  }
+  .hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.08; margin: 1.25rem 0 1rem; font-weight: 700; max-width: 18ch; }
+  .hero p { font-size: 1.15rem; max-width: 46rem; margin: 0; color: rgb(255 255 255 / .88); }
+  .hero .hint { margin-top: 1.25rem; font-size: .95rem; color: rgb(255 255 255 / .75); }
+
+  /* Tarjetas */
+  main.wrap { padding-top: 3rem; padding-bottom: 1rem; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px 20px 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    background: var(--card-grad); border: 1px solid var(--line); border-radius: 2rem; box-shadow: var(--shadow);
+    padding: 1.75rem; display: flex; flex-direction: column; gap: .75rem;
+    transition: box-shadow .2s, transform .2s;
   }
-  .card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .num {
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-  }
+  .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .card-top { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+  .num { font-size: 2rem; font-weight: 700; line-height: 1; color: var(--blue); font-variant-numeric: tabular-nums; }
   .chip {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--muted);
-    background: var(--chip);
-    border-radius: 999px;
-    padding: 3px 10px;
-    white-space: nowrap;
+    font-size: .75rem; font-weight: 600; color: var(--purple); background: var(--surface);
+    border: 1px solid var(--line-strong); border-radius: 999px; padding: .2rem .7rem; white-space: nowrap;
   }
-  .card h2 {
-    font-size: 1.08rem;
-    line-height: 1.35;
-    margin: 0;
-  }
-  .card p {
-    margin: 0;
-    color: var(--muted);
-    font-size: 0.95rem;
-    flex: 1;
-  }
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    margin-top: 4px;
-  }
+  .card h2 { font-size: 1.15rem; line-height: 1.3; margin: 0; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; flex: 1; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1rem; margin-top: .25rem; }
   .open {
-    display: inline-block;
-    background: var(--accent);
-    color: #ffffff;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 9px 16px;
-    border-radius: 9px;
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 1.25rem; border-radius: 999px;
+    background: #5620F6; color: #fff; font-weight: 600; text-decoration: none;
   }
-  .open:hover { background: var(--accent-strong); }
-  @media (prefers-color-scheme: dark) {
-    .open { color: #0f172a; }
-  }
-  .alt {
-    font-size: 0.9rem;
-    color: var(--muted);
-  }
-  footer {
-    margin-top: 36px;
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.88rem;
-  }
+  .open:hover { background: #4918AD; color: #fff; }
+  .alt { font-size: .9rem; font-weight: 600; }
+
+  /* Pie */
+  footer.site { margin-top: 4rem; background: #24324a; color: rgb(255 255 255 / .85); padding: 2.5rem 0; font-size: .88rem; }
+
+  @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="masthead">
-    <div>
-      <h1><span class="brand-mark" aria-hidden="true"></span><span id="page-title">AI-STEAM Network — Diagramas</span></h1>
-      <p class="lede" id="page-lede">Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.</p>
+<a class="skip" href="#contenido" id="skip">Saltar al contenido</a>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">AI</span>
+      <span>
+        <span class="brand-name">AI-STEAM Network</span>
+        <span class="brand-sub" id="brand-sub">Diagramas de la aplicación</span>
+      </span>
     </div>
-    <div class="lang-switch" role="group" aria-label="Idioma / Language">
-      <button type="button" id="lang-es" lang="es" aria-pressed="true">Español</button>
-      <button type="button" id="lang-en" lang="en" aria-pressed="false">English</button>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-es" lang="es" aria-pressed="true">ES</button>
+      <button type="button" id="lang-en" lang="en" aria-pressed="false">EN</button>
     </div>
-  </header>
-  <p class="meta-line"><span id="meta-count">6 temas · 12 diagramas</span><span id="meta-hint">Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.</span></p>
-  <main>
-    <div class="grid" id="grid"></div>
-  </main>
-  <footer>
-    <span id="footer-text">AI-STEAM Network · documentación de la aplicación</span>
-  </footer>
+  </div>
+</header>
+<div class="hero">
+  <div class="wrap">
+    <span class="eyebrow" id="meta-count">6 temas · 12 diagramas</span>
+    <h1 id="page-title">Diagramas de la aplicación</h1>
+    <p id="page-lede">Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.</p>
+    <p class="hint" id="meta-hint">Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.</p>
+  </div>
 </div>
+<main id="contenido" class="wrap" tabindex="-1">
+  <div class="grid" id="grid"></div>
+</main>
+<footer class="site">
+  <div class="wrap">
+    <span id="footer-text">AI-STEAM Network · documentación de la aplicación</span>
+  </div>
+</footer>
 <script>
 (function () {
   var STORAGE_KEY = "ai-steam-diagrams-lang";
@@ -281,7 +235,10 @@
   ];
   var copy = {
     es: {
-      title: "AI-STEAM Network — Diagramas",
+      docTitle: "AI-STEAM Network — Diagramas",
+      title: "Diagramas de la aplicación",
+      sub: "Diagramas de la aplicación",
+      skip: "Saltar al contenido",
       lede: "Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.",
       count: "6 temas · 12 diagramas",
       hint: "Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.",
@@ -291,7 +248,10 @@
       footer: "AI-STEAM Network · documentación de la aplicación"
     },
     en: {
-      title: "AI-STEAM Network — Diagrams",
+      docTitle: "AI-STEAM Network — Diagrams",
+      title: "Application diagrams",
+      sub: "Application diagrams",
+      skip: "Skip to content",
       lede: "Architecture, usage and compliance of the application, in Spanish and English.",
       count: "6 topics · 12 diagrams",
       hint: "Each diagram opens in a new tab with its own guided views, search and export.",
@@ -307,8 +267,10 @@
     var t = copy[lang];
     var other = lang === "es" ? "en" : "es";
     document.documentElement.lang = lang;
-    document.title = t.title;
+    document.title = t.docTitle;
     document.getElementById("page-title").textContent = t.title;
+    document.getElementById("brand-sub").textContent = t.sub;
+    document.getElementById("skip").textContent = t.skip;
     document.getElementById("page-lede").textContent = t.lede;
     document.getElementById("meta-count").textContent = t.count;
     document.getElementById("meta-hint").textContent = t.hint;
