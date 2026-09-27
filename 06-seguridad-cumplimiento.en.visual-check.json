@@ -6,9 +6,9 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "D:\\CEICE\\AI-STEAM-CONTENT\\docs\\diagrams\\06-seguridad-cumplimiento.en.html",
-    "sha256": "3f6ac7eeb31e8afedba7d05df67925a4feca46b0ba7453f7328e2acfba07e2a2",
-    "bytes": 812807
+    "path": "D:\\CEICE\\AI-STEAM-DIAGRAMS\\06-seguridad-cumplimiento.en.html",
+    "sha256": "19139fa39c370d516cfac2dd18bb37049f3d09bab6a5c7f1d7697b6b16fe1a61",
+    "bytes": 812805
   },
   "state": {
     "detail": "read",
@@ -16,7 +16,7 @@
   },
   "chrome": {
     "status": "available",
-    "executable": "C:\\Users\\js.miragregori\\AppData\\Local\\Chromium\\Application\\chrome.exe"
+    "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   },
   "diagnostics": [],
   "containment": {

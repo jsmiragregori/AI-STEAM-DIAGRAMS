@@ -1,0 +1,282 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Quality gates — change to delivery",
+    "output": "10-puertas-calidad.en.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "suite",
+        "label": "Suite",
+        "focus": [
+          "cambio",
+          "decision",
+          "pytest",
+          "node",
+          "guardas",
+          "arnes"
+        ],
+        "note": "Before publishing, the technical lead decides whether the full suite of both repositories runs."
+      },
+      {
+        "id": "guardas",
+        "label": "Guards",
+        "focus": [
+          "guardas",
+          "arnes",
+          "parada"
+        ],
+        "note": "Guards compare documents and code: if they diverge, the suite fails and must be fixed before publishing."
+      },
+      {
+        "id": "entrega",
+        "label": "Delivery",
+        "focus": [
+          "node",
+          "arnes",
+          "verify",
+          "paquete"
+        ],
+        "note": "Without intact generated data, no ZIP is written for DGTIC."
+      }
+    ],
+    "viewBox": [
+      930,
+      540
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "Change"
+        },
+        "backend": {
+          "label": "Test suite"
+        },
+        "security": {
+          "label": "Gate or guard"
+        },
+        "cloud": {
+          "label": "Delivery"
+        }
+      }
+    },
+    "locale": "en"
+  },
+  "lanes": [
+    {
+      "id": "dev",
+      "label": "Change and delivery"
+    },
+    {
+      "id": "content",
+      "label": "CONTENT tests"
+    },
+    {
+      "id": "vanilla",
+      "label": "VANILLA tests"
+    }
+  ],
+  "phases": [
+    {
+      "id": "cambio-fase",
+      "label": "Change",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "suite-fase",
+      "label": "Suite",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "entrega-fase",
+      "label": "Delivery",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "groups": [
+    {
+      "id": "npm-test",
+      "label": "npm test",
+      "lane": "content",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "node-test",
+      "label": "node --test",
+      "lane": "vanilla",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "cambio",
+    "decision",
+    "pytest",
+    "node",
+    "verify",
+    "paquete"
+  ],
+  "nodes": [
+    {
+      "id": "cambio",
+      "lane": "dev",
+      "col": 0,
+      "type": "frontend",
+      "label": "Change",
+      "sublabel": "code or content"
+    },
+    {
+      "id": "decision",
+      "lane": "dev",
+      "col": 1,
+      "type": "security",
+      "label": "Decision",
+      "sublabel": "full suite?",
+      "tag": "human"
+    },
+    {
+      "id": "pytest",
+      "lane": "content",
+      "col": 2,
+      "type": "backend",
+      "label": "pytest",
+      "sublabel": "panel · auth · loaders"
+    },
+    {
+      "id": "node",
+      "lane": "content",
+      "col": 3,
+      "type": "backend",
+      "label": "Node",
+      "sublabel": "loaders · slugs · legal"
+    },
+    {
+      "id": "guardas",
+      "lane": "vanilla",
+      "col": 2,
+      "type": "security",
+      "label": "Guards",
+      "sublabel": "cookies · site map"
+    },
+    {
+      "id": "arnes",
+      "lane": "vanilla",
+      "col": 3,
+      "type": "security",
+      "label": "Harness",
+      "sublabel": "DOM sinks · noopener"
+    },
+    {
+      "id": "verify",
+      "lane": "dev",
+      "col": 4,
+      "type": "security",
+      "label": "verify:data",
+      "sublabel": "and verify:vendor",
+      "tag": "blocking"
+    },
+    {
+      "id": "paquete",
+      "lane": "dev",
+      "col": 5,
+      "type": "cloud",
+      "label": "Package",
+      "sublabel": "ZIP + SHA-256"
+    },
+    {
+      "id": "parada",
+      "lane": "vanilla",
+      "col": 5,
+      "type": "security",
+      "label": "Not published",
+      "sublabel": "wip/ branch",
+      "width": 120
+    }
+  ],
+  "edges": [
+    {
+      "from": "cambio",
+      "to": "decision"
+    },
+    {
+      "from": "decision",
+      "to": "pytest",
+      "label": "yes",
+      "variant": "emphasis"
+    },
+    {
+      "from": "pytest",
+      "to": "node"
+    },
+    {
+      "from": "decision",
+      "to": "guardas",
+      "label": "VANILLA"
+    },
+    {
+      "from": "guardas",
+      "to": "arnes"
+    },
+    {
+      "from": "node",
+      "to": "verify",
+      "label": "green",
+      "variant": "emphasis"
+    },
+    {
+      "from": "arnes",
+      "to": "verify",
+      "label": "green",
+      "variant": "emphasis"
+    },
+    {
+      "from": "verify",
+      "to": "paquete"
+    },
+    {
+      "from": "arnes",
+      "to": "parada",
+      "label": "red",
+      "variant": "security",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Document = code",
+      "items": [
+        "Cookie policy = keys in use",
+        "The site map covers every view",
+        "Renamed slug = alias"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Stop conditions",
+      "items": [
+        "When red, work goes to wip/",
+        "No intact data, no ZIP",
+        "A person decides on the suite"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Security watched",
+      "items": [
+        "DOM sink inventory",
+        "noopener and allowlisted URLs",
+        "No dossier in the public repo"
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@
     "legend": { "entries": { "frontend": { "label": "Frontend" }, "backend": { "label": "Service" }, "security": { "label": "Security" }, "external": { "label": "External actor" } } },
     "views": [
       { "id": "edit", "label": "Edit", "focus": ["abrir", "editar", "validar"], "note": "An editor opens a section, changes the content, and the panel validates it before saving." },
-      { "id": "preview", "label": "Preview", "focus": ["validar", "previa", "regenerar"], "note": "The preview uses the same function as the build: what you see is what gets published." },
+      { "id": "preview", "label": "Review", "focus": ["validar", "previa", "regenerar"], "note": "The editor reviews the change; for legal texts, the preview uses the same function as the build." },
       { "id": "publish", "label": "Publish", "focus": ["regenerar", "loader", "visible"], "note": "The loader writes assets/data over NFS and the change is visible instantly." },
       { "id": "fix", "label": "Fix", "focus": ["validar", "corregir", "editar"], "note": "If validation fails, nothing is saved: fix the content and try again." }
     ]
@@ -34,7 +34,7 @@
     { "id": "abrir", "lane": "edicion", "col": 0, "type": "external", "label": "Open section", "sublabel": "panel menu", "width": 132 },
     { "id": "editar", "lane": "edicion", "col": 1, "type": "external", "label": "Edit content", "sublabel": "YAML/CSV · es/en/va", "width": 132 },
     { "id": "validar", "lane": "panel", "col": 2, "type": "security", "label": "Validate", "sublabel": "schema and fields", "tag": "fails closed", "width": 132 },
-    { "id": "previa", "lane": "panel", "col": 3, "type": "frontend", "label": "Preview", "sublabel": "same render as the build", "width": 132 },
+    { "id": "previa", "lane": "panel", "col": 3, "type": "frontend", "label": "Review", "sublabel": "exact preview for legal", "width": 132 },
     { "id": "regenerar", "lane": "panel", "col": 4, "type": "backend", "label": "Regenerate section", "sublabel": "closed action cms:*", "width": 132 },
     { "id": "loader", "lane": "generacion", "col": 4, "type": "backend", "label": "Loader and write", "sublabel": "assets/data · NFS", "width": 132 },
     { "id": "visible", "lane": "generacion", "col": 5, "type": "frontend", "label": "Visible instantly", "sublabel": "no deployment", "width": 132 },
@@ -52,7 +52,7 @@
   ],
   "cards": [
     { "dot": "cyan", "title": "Fails closed", "items": ["Validation runs before any write", "No save means no regeneration"] },
-    { "dot": "emerald", "title": "No surprises", "items": ["Preview uses the same render as the build", "All three languages are mandatory"] },
+    { "dot": "emerald", "title": "No surprises", "items": ["The legal preview uses the build render", "Legal texts require es/en/va"] },
     { "dot": "amber", "title": "Auditable", "items": ["Every action is recorded", "The panel never publishes through Git"] }
   ]
 }

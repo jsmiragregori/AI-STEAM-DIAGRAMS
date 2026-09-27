@@ -6,9 +6,9 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "D:\\CEICE\\AI-STEAM-CONTENT\\docs\\diagrams\\01-arquitectura-ai-steam.en.html",
-    "sha256": "4f8a9dbd98b30d967751a21daa3c5a6681a7d78415ffe26209472a418f00b5ea",
-    "bytes": 813367
+    "path": "D:\\CEICE\\AI-STEAM-DIAGRAMS\\01-arquitectura-ai-steam.en.html",
+    "sha256": "6b841ad7904dcd979a57ba0423489d1da13c6fd7365f0c91285dc3cdd5c87e8d",
+    "bytes": 813318
   },
   "state": {
     "detail": "read",
@@ -16,7 +16,7 @@
   },
   "chrome": {
     "status": "available",
-    "executable": "C:\\Users\\js.miragregori\\AppData\\Local\\Chromium\\Application\\chrome.exe"
+    "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   },
   "diagnostics": [],
   "containment": {
@@ -95,8 +95,8 @@
         "overflowX": false,
         "overflowY": false,
         "ok": true,
-        "readerWidth": 1375,
-        "diagramWidth": 1345,
+        "readerWidth": 1408,
+        "diagramWidth": 1378,
         "viewBoxWidth": 1060,
         "minimumProjectedNodeTextPx": 9,
         "minimumProjectedNodeText": "browser · internal network",
@@ -225,8 +225,8 @@
         "overflowX": false,
         "overflowY": false,
         "ok": true,
-        "readerWidth": 1375,
-        "diagramWidth": 1345,
+        "readerWidth": 1408,
+        "diagramWidth": 1378,
         "viewBoxWidth": 1060,
         "minimumProjectedNodeTextPx": 9,
         "minimumProjectedNodeText": "browser · internal network",
@@ -354,8 +354,8 @@
         "overflowX": false,
         "overflowY": false,
         "ok": true,
-        "readerWidth": 1375,
-        "diagramWidth": 1345,
+        "readerWidth": 1408,
+        "diagramWidth": 1378,
         "viewBoxWidth": 1060,
         "minimumProjectedNodeTextPx": 9,
         "minimumProjectedNodeText": "browser · internal network",

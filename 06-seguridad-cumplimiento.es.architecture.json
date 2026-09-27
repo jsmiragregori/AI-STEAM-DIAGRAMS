@@ -46,7 +46,7 @@
   ],
   "cards": [
     { "dot": "cyan", "title": "Privacidad", "items": ["Sin cookies ni analítica en el sitio", "Formularios externos, solo enlazados", "El servidor registra la IP en sus logs"] },
-    { "dot": "emerald", "title": "Control de acceso", "items": ["Autenticación local Argon2id", "Roles editor y superadmin", "Sesiones con caducidad y bloqueo"] },
+    { "dot": "emerald", "title": "Control de acceso", "items": ["Autenticación local Argon2id", "Roles user y superadmin", "Sesiones con caducidad y bloqueo"] },
     { "dot": "amber", "title": "Cumplimiento", "items": ["DPD consultado (RGPD)", "Declaración de accesibilidad publicada", "Auditoría con retención de 24 meses"] }
   ]
 }

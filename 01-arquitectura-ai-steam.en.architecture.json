@@ -60,7 +60,7 @@
     { "from": "panel", "to": "loaders", "label": "regenerate section", "variant": "emphasis" },
     { "from": "panel", "to": "fuentes", "label": "edits YAML/CSV", "labelDy": 24 },
     { "from": "loaders", "to": "fuentes", "label": "reads sources" },
-    { "from": "loaders", "to": "vanilla", "label": "writes assets/{data,media,downloads} · NFS", "variant": "emphasis", "labelDy": 24 },
+    { "from": "loaders", "to": "vanilla", "label": "writes assets/data · NFS", "variant": "emphasis", "labelDy": 24 },
     { "from": "visitantes", "to": "balanceador", "label": "HTTPS" },
     { "from": "balanceador", "to": "web", "label": "HTTPS · GET only", "labelDy": 58 },
     { "from": "web", "to": "vanilla", "label": "serves the docroot" }
@@ -68,6 +68,6 @@
   "cards": [
     { "dot": "cyan", "title": "No database", "items": ["Content is files: YAML and CSV under content/", "The panel edits sources; loaders generate the .js data", "The site runs no code: it only serves static files"] },
     { "dot": "emerald", "title": "Direct publishing over NFS", "items": ["MANAGEMENT writes only data, media and downloads", "The skeleton (index.html, js, css) is never touched", "Regenerating is instantly visible on the public site"] },
-    { "dot": "amber", "title": "Two separate accesses", "items": ["Internet: read-only behind load balancer and HTTPS", "Internal network: TLS + local authentication (Argon2id)", "Code ships through deployment pipelines; content does not"] }
+    { "dot": "amber", "title": "Two separate accesses", "items": ["Internet: read-only behind load balancer and HTTPS", "Internal network: TLS + local authentication (Argon2id)", "Code ships as delivery packages; content does not"] }
   ]
 }

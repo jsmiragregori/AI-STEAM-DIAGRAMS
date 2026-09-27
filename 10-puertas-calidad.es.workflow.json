@@ -1,0 +1,281 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Puertas de calidad — del cambio a la entrega",
+    "output": "10-puertas-calidad.es.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "suite",
+        "label": "Suite",
+        "focus": [
+          "cambio",
+          "decision",
+          "pytest",
+          "node",
+          "guardas",
+          "arnes"
+        ],
+        "note": "Antes de publicar, el responsable técnico decide si se pasa la suite completa de ambos repositorios."
+      },
+      {
+        "id": "guardas",
+        "label": "Guardas",
+        "focus": [
+          "guardas",
+          "arnes",
+          "parada"
+        ],
+        "note": "Las guardas comparan documento y código: si divergen, la suite falla y obliga a corregir antes de publicar."
+      },
+      {
+        "id": "entrega",
+        "label": "Entrega",
+        "focus": [
+          "node",
+          "arnes",
+          "verify",
+          "paquete"
+        ],
+        "note": "Sin datos generados íntegros no se escribe ningún ZIP para DGTIC."
+      }
+    ],
+    "viewBox": [
+      930,
+      540
+    ],
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "Cambio"
+        },
+        "backend": {
+          "label": "Suite de pruebas"
+        },
+        "security": {
+          "label": "Puerta o guarda"
+        },
+        "cloud": {
+          "label": "Entrega"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "dev",
+      "label": "Cambio y entrega"
+    },
+    {
+      "id": "content",
+      "label": "Pruebas CONTENT"
+    },
+    {
+      "id": "vanilla",
+      "label": "Pruebas VANILLA"
+    }
+  ],
+  "phases": [
+    {
+      "id": "cambio-fase",
+      "label": "Cambio",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "suite-fase",
+      "label": "Suite",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "entrega-fase",
+      "label": "Entrega",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "groups": [
+    {
+      "id": "npm-test",
+      "label": "npm test",
+      "lane": "content",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "node-test",
+      "label": "node --test",
+      "lane": "vanilla",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    }
+  ],
+  "mainPath": [
+    "cambio",
+    "decision",
+    "pytest",
+    "node",
+    "verify",
+    "paquete"
+  ],
+  "nodes": [
+    {
+      "id": "cambio",
+      "lane": "dev",
+      "col": 0,
+      "type": "frontend",
+      "label": "Cambio",
+      "sublabel": "código o contenido"
+    },
+    {
+      "id": "decision",
+      "lane": "dev",
+      "col": 1,
+      "type": "security",
+      "label": "Decisión",
+      "sublabel": "¿suite completa?",
+      "tag": "humana"
+    },
+    {
+      "id": "pytest",
+      "lane": "content",
+      "col": 2,
+      "type": "backend",
+      "label": "pytest",
+      "sublabel": "panel · auth · loaders"
+    },
+    {
+      "id": "node",
+      "lane": "content",
+      "col": 3,
+      "type": "backend",
+      "label": "Node",
+      "sublabel": "loaders · slugs · legal"
+    },
+    {
+      "id": "guardas",
+      "lane": "vanilla",
+      "col": 2,
+      "type": "security",
+      "label": "Guardas",
+      "sublabel": "cookies · mapa web"
+    },
+    {
+      "id": "arnes",
+      "lane": "vanilla",
+      "col": 3,
+      "type": "security",
+      "label": "Arnés",
+      "sublabel": "sinks DOM · noopener"
+    },
+    {
+      "id": "verify",
+      "lane": "dev",
+      "col": 4,
+      "type": "security",
+      "label": "verify:data",
+      "sublabel": "y verify:vendor",
+      "tag": "bloqueante"
+    },
+    {
+      "id": "paquete",
+      "lane": "dev",
+      "col": 5,
+      "type": "cloud",
+      "label": "Paquete",
+      "sublabel": "ZIP + SHA-256"
+    },
+    {
+      "id": "parada",
+      "lane": "vanilla",
+      "col": 5,
+      "type": "security",
+      "label": "No se publica",
+      "sublabel": "rama wip/",
+      "width": 120
+    }
+  ],
+  "edges": [
+    {
+      "from": "cambio",
+      "to": "decision"
+    },
+    {
+      "from": "decision",
+      "to": "pytest",
+      "label": "sí",
+      "variant": "emphasis"
+    },
+    {
+      "from": "pytest",
+      "to": "node"
+    },
+    {
+      "from": "decision",
+      "to": "guardas",
+      "label": "VANILLA"
+    },
+    {
+      "from": "guardas",
+      "to": "arnes"
+    },
+    {
+      "from": "node",
+      "to": "verify",
+      "label": "verde",
+      "variant": "emphasis"
+    },
+    {
+      "from": "arnes",
+      "to": "verify",
+      "label": "verde",
+      "variant": "emphasis"
+    },
+    {
+      "from": "verify",
+      "to": "paquete"
+    },
+    {
+      "from": "arnes",
+      "to": "parada",
+      "label": "rojo",
+      "variant": "security",
+      "role": "error"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Documento = código",
+      "items": [
+        "Política de cookies = claves usadas",
+        "El mapa web cubre todas las vistas",
+        "Slug renombrado = alias"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Condiciones de parada",
+      "items": [
+        "En rojo, a una rama wip/",
+        "Sin datos íntegros no hay ZIP",
+        "La suite la decide una persona"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Seguridad vigilada",
+      "items": [
+        "Inventario de sinks DOM",
+        "noopener y URL con allowlist",
+        "Sin expediente en el repo público"
+      ]
+    }
+  ]
+}

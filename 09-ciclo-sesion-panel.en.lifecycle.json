@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Panel sessions — lifecycle",
+    "output": "09-ciclo-sesion-panel.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1000,
+      600
+    ],
+    "views": [
+      {
+        "id": "acceso",
+        "label": "Access",
+        "focus": [
+          "sin",
+          "cred",
+          "verif",
+          "activa",
+          "cierre"
+        ],
+        "note": "A session only exists if verification and its audit record both succeed."
+      },
+      {
+        "id": "bloqueo",
+        "label": "Lockout and expiry",
+        "focus": [
+          "verif",
+          "bloq",
+          "activa",
+          "cad"
+        ],
+        "note": "Five failures lock the account for 15 minutes; a session expires after 8 hours or 30 idle minutes."
+      },
+      {
+        "id": "contrasena",
+        "label": "Provisional password",
+        "focus": [
+          "verif",
+          "cambio",
+          "recup",
+          "activa"
+        ],
+        "note": "A provisional password must be changed before using the panel; recovery is local and revokes sessions."
+      }
+    ],
+    "locale": "en",
+    "legend": {
+      "entries": {
+        "start": {
+          "label": "start"
+        },
+        "active": {
+          "label": "active state"
+        },
+        "waiting": {
+          "label": "waiting"
+        },
+        "decision": {
+          "label": "decision"
+        },
+        "success": {
+          "label": "clean exit"
+        },
+        "failure": {
+          "label": "lockout"
+        },
+        "neutral": {
+          "label": "expiry exit"
+        },
+        "external": {
+          "label": "local action"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Panel access"
+    },
+    {
+      "id": "excepciones",
+      "label": "Password, lockout and expiry"
+    },
+    {
+      "id": "terminal",
+      "label": "Local administration"
+    }
+  ],
+  "states": [
+    {
+      "id": "sin",
+      "type": "start",
+      "label": "No session",
+      "sublabel": "login screen",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "cred",
+      "type": "active",
+      "label": "Credentials",
+      "sublabel": "user + password",
+      "lane": "main",
+      "col": 1,
+      "step": "02"
+    },
+    {
+      "id": "verif",
+      "type": "decision",
+      "label": "Verification",
+      "sublabel": "Argon2id · audit",
+      "lane": "main",
+      "col": 2,
+      "step": "03",
+      "tag": "fails closed"
+    },
+    {
+      "id": "activa",
+      "type": "active",
+      "label": "Active session",
+      "sublabel": "revalidates each action",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "cierre",
+      "type": "success",
+      "label": "Logout",
+      "sublabel": "sesion.cierre",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "cambio",
+      "type": "waiting",
+      "label": "Password change",
+      "sublabel": "provisional password",
+      "lane": "excepciones",
+      "col": 1,
+      "width": 140
+    },
+    {
+      "id": "bloq",
+      "type": "failure",
+      "label": "Locked",
+      "sublabel": "5 failures · 15 min",
+      "lane": "excepciones",
+      "col": 0
+    },
+    {
+      "id": "cad",
+      "type": "neutral",
+      "label": "Expired",
+      "sublabel": "sesion.expiracion",
+      "lane": "excepciones",
+      "col": 2
+    },
+    {
+      "id": "recup",
+      "type": "external",
+      "label": "Recovery",
+      "sublabel": "recover_superadmin.py",
+      "lane": "terminal",
+      "col": 1,
+      "yOffset": -40
+    }
+  ],
+  "transitions": [
+    {
+      "from": "verif",
+      "to": "bloq",
+      "label": "5 failures",
+      "variant": "security",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "bloq",
+      "to": "cred",
+      "label": "after 15 min",
+      "variant": "dashed"
+    },
+    {
+      "from": "verif",
+      "to": "cambio",
+      "label": "provisional",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "from": "cambio",
+      "to": "activa",
+      "label": "new password",
+      "variant": "emphasis",
+      "route": "straight",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "activa",
+      "to": "cad",
+      "label": "8 h · 30 min idle",
+      "variant": "dashed"
+    },
+    {
+      "from": "recup",
+      "to": "cambio",
+      "label": "revokes sessions",
+      "variant": "security",
+      "route": "straight",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Fails closed",
+      "items": [
+        "No audit record, no session",
+        "Argon2id on local disk",
+        "Errors give no user hints"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Limits",
+      "items": [
+        "5 failures: 15 min lockout",
+        "8 h maximum lifetime",
+        "30 min of inactivity"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Recovery",
+      "items": [
+        "Local access only",
+        "Requires typing RECUPERAR",
+        "Revokes previous sessions"
+      ]
+    }
+  ]
+}

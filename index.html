@@ -154,7 +154,7 @@
 </header>
 <div class="hero">
   <div class="wrap">
-    <span class="eyebrow" id="meta-count">6 temas · 12 diagramas</span>
+    <span class="eyebrow" id="meta-count">10 temas · 20 diagramas</span>
     <h1 id="page-title">Diagramas de la aplicación</h1>
     <p id="page-lede">Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.</p>
     <p class="hint" id="meta-hint">Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.</p>
@@ -231,6 +231,46 @@
         en: "Access control with local authentication, audit retention, cookie-free privacy and the accessibility statement."
       },
       files: { es: "06-seguridad-cumplimiento.es.html", en: "06-seguridad-cumplimiento.en.html" }
+    },
+    {
+      num: "07",
+      kind: { es: "Arquitectura", en: "Architecture" },
+      title: { es: "Arquitectura interna del sitio público", en: "Internal architecture of the public site" },
+      desc: {
+        es: "Los módulos de VANILLA: arranque, enrutado con enlaces permanentes y alias, idiomas, vistas y datos generados.",
+        en: "VANILLA's modules: boot, routing with permanent links and aliases, languages, views and generated data."
+      },
+      files: { es: "07-arquitectura-sitio-publico.es.html", en: "07-arquitectura-sitio-publico.en.html" }
+    },
+    {
+      num: "08",
+      kind: { es: "Flujo de datos", en: "Data flow" },
+      title: { es: "Defensa en profundidad", en: "Defence in depth" },
+      desc: {
+        es: "Las capas que atraviesa el contenido desde la fuente hasta el DOM: validación en el build, escapado, allowlists y doble saneado legal.",
+        en: "The layers content crosses from source to DOM: build validation, escaping, allowlists and two-layer legal sanitising."
+      },
+      files: { es: "08-defensa-en-profundidad.es.html", en: "08-defensa-en-profundidad.en.html" }
+    },
+    {
+      num: "09",
+      kind: { es: "Ciclo de vida", en: "Lifecycle" },
+      title: { es: "Sesiones del panel", en: "Panel sessions" },
+      desc: {
+        es: "Los estados de una sesión: verificación, bloqueo tras cinco fallos, contraseña provisional, caducidad y recuperación local.",
+        en: "The states of a session: verification, lockout after five failures, provisional password, expiry and local recovery."
+      },
+      files: { es: "09-ciclo-sesion-panel.es.html", en: "09-ciclo-sesion-panel.en.html" }
+    },
+    {
+      num: "10",
+      kind: { es: "Flujo de trabajo", en: "Workflow" },
+      title: { es: "Puertas de calidad", en: "Quality gates" },
+      desc: {
+        es: "Del cambio a la entrega: suites de ambos repositorios, guardas de coherencia entre documento y código, y verificación antes de empaquetar.",
+        en: "From change to delivery: both repositories' suites, document-to-code coherence guards and verification before packaging."
+      },
+      files: { es: "10-puertas-calidad.es.html", en: "10-puertas-calidad.en.html" }
     }
   ];
   var copy = {
@@ -240,7 +280,7 @@
       sub: "Diagramas de la aplicación",
       skip: "Saltar al contenido",
       lede: "Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.",
-      count: "6 temas · 12 diagramas",
+      count: "10 temas · 20 diagramas",
       hint: "Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.",
       open: "Abrir diagrama",
       alt: "También en inglés",
@@ -253,7 +293,7 @@
       sub: "Application diagrams",
       skip: "Skip to content",
       lede: "Architecture, usage and compliance of the application, in Spanish and English.",
-      count: "6 topics · 12 diagrams",
+      count: "10 topics · 20 diagrams",
       hint: "Each diagram opens in a new tab with its own guided views, search and export.",
       open: "Open diagram",
       alt: "Also in Spanish",

@@ -6,9 +6,9 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "D:\\CEICE\\AI-STEAM-CONTENT\\docs\\diagrams\\04-flujo-editorial.en.html",
-    "sha256": "577f94033f953ce6ca6268f1d9bd697072d1c9f2cb1f712b3946031a49aedde5",
-    "bytes": 811416
+    "path": "D:\\CEICE\\AI-STEAM-DIAGRAMS\\04-flujo-editorial.en.html",
+    "sha256": "b2be420fdef3c3115967f13b8beb82d85574771b76bda7c5b94adbd451ce82a7",
+    "bytes": 811411
   },
   "state": {
     "detail": "read",
@@ -16,7 +16,7 @@
   },
   "chrome": {
     "status": "available",
-    "executable": "C:\\Users\\js.miragregori\\AppData\\Local\\Chromium\\Application\\chrome.exe"
+    "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   },
   "diagnostics": [],
   "containment": {

@@ -1,0 +1,376 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Public site — internal architecture of VANILLA",
+    "output": "07-arquitectura-sitio-publico.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1080,
+      540
+    ],
+    "repository": {
+      "url": "https://github.com/jsmiragregori/AI-STEAM-NETWORK.git",
+      "revision": "81bd7c006a59bb60de8b4a3845442a043c2c9428",
+      "link_mode": "local-only"
+    },
+    "views": [
+      {
+        "id": "arranque",
+        "label": "Boot and routes",
+        "focus": [
+          "navegador",
+          "main",
+          "router",
+          "slugs"
+        ],
+        "note": "main.js reads the hash, the router resolves it against the slug table and decides which view to render."
+      },
+      {
+        "id": "idioma",
+        "label": "Language",
+        "focus": [
+          "router",
+          "i18n",
+          "data"
+        ],
+        "note": "The router takes the language from the link or the saved preference; texts come from translations.js."
+      },
+      {
+        "id": "pintado",
+        "label": "Rendering",
+        "focus": [
+          "main",
+          "views",
+          "comps",
+          "utils",
+          "data"
+        ],
+        "note": "Header, footer and view render from the generated data, always through escaping and sanitising."
+      }
+    ],
+    "locale": "en"
+  },
+  "components": [
+    {
+      "id": "navegador",
+      "type": "external",
+      "label": "Visitor",
+      "sublabel": "opens #en/sectors",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        165,
+        64
+      ]
+    },
+    {
+      "id": "main",
+      "type": "frontend",
+      "label": "main.js",
+      "sublabel": "boot · renderApp",
+      "pos": [
+        320,
+        100
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/main.js",
+          "line": 33,
+          "label": "renderApp"
+        },
+        {
+          "path": "assets/js/main.js",
+          "line": 64,
+          "label": "hashchange"
+        }
+      ]
+    },
+    {
+      "id": "router",
+      "type": "backend",
+      "label": "router.js",
+      "sublabel": "#lang/slug → view",
+      "pos": [
+        600,
+        100
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/router.js",
+          "line": 59,
+          "label": "readRoute"
+        },
+        {
+          "path": "assets/js/utils/view-route.js",
+          "line": 346,
+          "label": "resolveInitialRoute"
+        }
+      ]
+    },
+    {
+      "id": "slugs",
+      "type": "security",
+      "label": "Slug table",
+      "sublabel": "CMS or fallback · aliases",
+      "pos": [
+        880,
+        100
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/slug-table.js",
+          "line": 21,
+          "label": "effective table"
+        }
+      ]
+    },
+    {
+      "id": "comps",
+      "type": "frontend",
+      "label": "Header and footer",
+      "sublabel": "components/*.js",
+      "pos": [
+        40,
+        260
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/components/header.js",
+          "line": 90,
+          "label": "renderHeader"
+        },
+        {
+          "path": "assets/js/components/footer.js",
+          "line": 46,
+          "label": "renderFooter"
+        }
+      ]
+    },
+    {
+      "id": "views",
+      "type": "frontend",
+      "label": "Views",
+      "sublabel": "views/*.js · 12 views",
+      "pos": [
+        320,
+        260
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/views/index.js",
+          "line": 1,
+          "label": "view catalogue"
+        }
+      ]
+    },
+    {
+      "id": "i18n",
+      "type": "backend",
+      "label": "i18n.js",
+      "sublabel": "es · en · va · t()",
+      "pos": [
+        600,
+        260
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/i18n.js",
+          "line": 32,
+          "label": "applyLanguage"
+        },
+        {
+          "path": "assets/js/i18n.js",
+          "line": 44,
+          "label": "t()"
+        }
+      ]
+    },
+    {
+      "id": "utils",
+      "type": "security",
+      "label": "Escaping and sanitising",
+      "sublabel": "utils/*.js",
+      "pos": [
+        320,
+        420
+      ],
+      "size": [
+        165,
+        64
+      ],
+      "sources": [
+        {
+          "path": "assets/js/utils/escape-html.js",
+          "line": 7,
+          "label": "escapeHtml"
+        },
+        {
+          "path": "assets/js/utils/sanitize-editorial-html.js",
+          "line": 4,
+          "label": "editorial allowlist"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "type": "database",
+      "label": "assets/data/*.js",
+      "sublabel": "generated by CONTENT",
+      "pos": [
+        880,
+        420
+      ],
+      "size": [
+        165,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Visitor's browser · no backend",
+      "wraps": [
+        "main",
+        "router",
+        "slugs",
+        "comps",
+        "views",
+        "i18n",
+        "utils"
+      ],
+      "pad": 22
+    }
+  ],
+  "connections": [
+    {
+      "from": "navegador",
+      "to": "main",
+      "label": "loads index.html",
+      "variant": "emphasis"
+    },
+    {
+      "from": "main",
+      "to": "router",
+      "label": "reads the route",
+      "variant": "emphasis"
+    },
+    {
+      "from": "router",
+      "to": "slugs",
+      "label": "slug or alias"
+    },
+    {
+      "from": "main",
+      "to": "views",
+      "label": "renders the view",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "main",
+      "to": "comps",
+      "label": "header and footer",
+      "fromSide": "left",
+      "toSide": "top"
+    },
+    {
+      "from": "router",
+      "to": "i18n",
+      "label": "saved language",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "views",
+      "to": "utils",
+      "label": "escapes and sanitises",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "slugs",
+      "to": "data",
+      "label": "navigation.js",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "views",
+      "to": "data",
+      "label": "reads the data",
+      "variant": "dashed"
+    },
+    {
+      "from": "i18n",
+      "to": "data",
+      "label": "translations.js",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "left"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Permanent links",
+      "items": [
+        "#lang/slug opens the view in that language",
+        "A renamed slug stays as an alias",
+        "If the data fails, the built-in table is used"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "No runtime dependencies",
+      "items": [
+        "Native ES6 modules, no bundler",
+        "No backend and no database",
+        "Reads static files only"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Language",
+      "items": [
+        "Three languages: es, en and va",
+        "Preference stored in localStorage",
+        "The link overrides the preference"
+      ]
+    }
+  ]
+}

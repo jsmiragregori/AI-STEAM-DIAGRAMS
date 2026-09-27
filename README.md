@@ -22,6 +22,10 @@ Punto de entrada / Entry point: [`index.html`](index.html) (selector Español / 
 | 04 | Flujo editorial / Editorial workflow | Flujo de trabajo | [Abrir](04-flujo-editorial.es.html) | [Open](04-flujo-editorial.en.html) |
 | 05 | Datos y multilingüismo / Data and multilingual content | Flujo de datos | [Abrir](05-datos-multilingues.es.html) | [Open](05-datos-multilingues.en.html) |
 | 06 | Seguridad y cumplimiento / Security and compliance | Arquitectura | [Abrir](06-seguridad-cumplimiento.es.html) | [Open](06-seguridad-cumplimiento.en.html) |
+| 07 | Arquitectura interna del sitio público / Internal architecture of the public site | Arquitectura | [Abrir](07-arquitectura-sitio-publico.es.html) | [Open](07-arquitectura-sitio-publico.en.html) |
+| 08 | Defensa en profundidad / Defence in depth | Flujo de datos | [Abrir](08-defensa-en-profundidad.es.html) | [Open](08-defensa-en-profundidad.en.html) |
+| 09 | Sesiones del panel / Panel sessions | Ciclo de vida | [Abrir](09-ciclo-sesion-panel.es.html) | [Open](09-ciclo-sesion-panel.en.html) |
+| 10 | Puertas de calidad / Quality gates | Flujo de trabajo | [Abrir](10-puertas-calidad.es.html) | [Open](10-puertas-calidad.en.html) |
 
 ## Estructura / Structure
 
@@ -42,13 +46,14 @@ node bin/archify.mjs validate <tipo> <spec.json> --quality showcase
 node bin/archify.mjs deliver  <tipo> <spec.json> <salida.html> --quality showcase
 ```
 
-Los diagramas **01** y **06** citan código del repositorio privado **AI-STEAM-CONTENT**; para
-regenerarlos con verificación de evidencia hay que añadir `--repo-root <ruta a AI-STEAM-CONTENT>`.
+Los diagramas **01** y **06** citan código del repositorio privado **AI-STEAM-CONTENT**, y el **07**
+cita código de **AI-STEAM-VANILLA**; para regenerarlos con verificación de evidencia hay que añadir
+`--repo-root <ruta al repositorio correspondiente>`.
 
 The diagrams are generated with the **archify** skill from the `*.json` specifications
 (`showcase` quality, 9/9 checks, 0 errors and 0 warnings). Diagrams **01** and **06** cite code
-from the private **AI-STEAM-CONTENT** repository; add `--repo-root <path to AI-STEAM-CONTENT>`
-to regenerate them with evidence verification.
+from the private **AI-STEAM-CONTENT** repository and **07** cites **AI-STEAM-VANILLA**; add
+`--repo-root <path to the matching repository>` to regenerate them with evidence verification.
 
 La aplicación, sus fuentes y su documentación viven en **AI-STEAM-CONTENT**; este repositorio
 solo publica los diagramas. / The application, its sources and its documentation live in

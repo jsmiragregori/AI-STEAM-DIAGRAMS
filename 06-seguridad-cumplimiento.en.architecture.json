@@ -47,7 +47,7 @@
   ],
   "cards": [
     { "dot": "cyan", "title": "Privacy", "items": ["No cookies and no analytics on the site", "Forms are external and only linked", "The server logs the visitor IP"] },
-    { "dot": "emerald", "title": "Access control", "items": ["Local Argon2id authentication", "Editor and superadmin roles", "Sessions with expiry and lockout"] },
+    { "dot": "emerald", "title": "Access control", "items": ["Local Argon2id authentication", "user and superadmin roles", "Sessions with expiry and lockout"] },
     { "dot": "amber", "title": "Compliance", "items": ["Data protection officer consulted (GDPR)", "Accessibility statement published", "Audit retained for 24 months"] }
   ]
 }

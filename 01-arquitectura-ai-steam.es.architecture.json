@@ -59,7 +59,7 @@
     { "from": "panel", "to": "loaders", "label": "regenerar sección", "variant": "emphasis" },
     { "from": "panel", "to": "fuentes", "label": "edita YAML/CSV", "labelDy": 24 },
     { "from": "loaders", "to": "fuentes", "label": "lee fuentes" },
-    { "from": "loaders", "to": "vanilla", "label": "escribe assets/{data,media,downloads} · NFS", "variant": "emphasis", "labelDy": 24 },
+    { "from": "loaders", "to": "vanilla", "label": "escribe assets/data · NFS", "variant": "emphasis", "labelDy": 24 },
     { "from": "visitantes", "to": "balanceador", "label": "HTTPS" },
     { "from": "balanceador", "to": "web", "label": "HTTPS · solo GET", "labelDy": 58 },
     { "from": "web", "to": "vanilla", "label": "sirve el docroot" }
@@ -67,6 +67,6 @@
   "cards": [
     { "dot": "cyan", "title": "Sin base de datos", "items": ["El contenido son ficheros YAML y CSV en content/", "El panel edita fuentes; los loaders generan los .js", "El sitio no ejecuta código: solo sirve estáticos"] },
     { "dot": "emerald", "title": "Publicación directa por NFS", "items": ["GESTIÓN solo escribe data, media y downloads", "El esqueleto (index.html, js, css) no se toca", "Regenerar se ve al instante en el sitio público"] },
-    { "dot": "amber", "title": "Dos accesos separados", "items": ["Internet: solo lectura tras balanceador y HTTPS", "Red interna: TLS + autenticación local (Argon2id)", "El código viaja por pipelines; el contenido no"] }
+    { "dot": "amber", "title": "Dos accesos separados", "items": ["Internet: solo lectura tras balanceador y HTTPS", "Red interna: TLS + autenticación local (Argon2id)", "El código llega en paquetes; el contenido no"] }
   ]
 }

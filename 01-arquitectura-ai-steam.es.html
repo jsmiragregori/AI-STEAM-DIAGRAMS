@@ -5166,7 +5166,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <path data-edge-from="panel" data-edge-to="loaders" data-edge-label="regenerar sección" data-edge-key="2" data-composition-points="710,136;830,136" d="M 710 136 L 830 136" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="panel" data-edge-to="fuentes" data-edge-label="edita YAML/CSV" data-edge-key="3" data-composition-points="615,176;615,250" d="M 615 176 L 615 250" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         <path data-edge-from="loaders" data-edge-to="fuentes" data-edge-label="lee fuentes" data-edge-key="4" data-composition-points="830,150;770,150;770,281;710,281" d="M 830 150 L 778 150 Q 770 150 770 158 L 770 273 Q 770 281 762 281 L 710 281" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="loaders" data-edge-to="vanilla" data-edge-label="escribe assets/{data,media,downloads} · NFS" data-edge-key="5" data-composition-points="925,176;925,400" d="M 925 176 L 925 400" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="loaders" data-edge-to="vanilla" data-edge-label="escribe assets/data · NFS" data-edge-key="5" data-composition-points="925,176;925,400" d="M 925 176 L 925 400" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="visitantes" data-edge-to="balanceador" data-edge-label="HTTPS" data-edge-key="6" data-composition-points="200,432;280,432" d="M 200 432 L 280 432" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         <path data-edge-from="balanceador" data-edge-to="web" data-edge-label="HTTPS · solo GET" data-edge-key="7" data-composition-points="440,432;520,432" d="M 440 432 L 520 432" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         <path data-edge-from="web" data-edge-to="vanilla" data-edge-label="sirve el docroot" data-edge-key="8" data-composition-points="710,433;830,433" d="M 710 433 L 830 433" class="a-default" stroke-width="1.5" marker-end="url(#arrowhead)"/>
@@ -5306,9 +5306,9 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
           <rect x="738.6" y="195.5" width="62.8" height="14" rx="3" class="c-mask"/>
           <text x="770" y="205.5" class="t-muted" font-size="8" text-anchor="middle">lee fuentes</text>
         </g>
-        <g data-detail="context" data-edge-from="loaders" data-edge-to="vanilla" data-edge-label="escribe assets/{data,media,downloads} · NFS" data-edge-key="5">
-          <rect x="816.8" y="180" width="216.4" height="14" rx="3" class="c-mask"/>
-          <text x="925" y="190" class="t-backend" font-size="8" text-anchor="middle">escribe assets/{data,media,downloads} · NFS</text>
+        <g data-detail="context" data-edge-from="loaders" data-edge-to="vanilla" data-edge-label="escribe assets/data · NFS" data-edge-key="5">
+          <rect x="860" y="180" width="130" height="14" rx="3" class="c-mask"/>
+          <text x="925" y="190" class="t-backend" font-size="8" text-anchor="middle">escribe assets/data · NFS</text>
         </g>
         <g data-detail="context" data-edge-from="visitantes" data-edge-to="balanceador" data-edge-label="HTTPS" data-edge-key="6">
           <rect x="223" y="412" width="34" height="14" rx="3" class="c-mask"/>
@@ -5554,7 +5554,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <ul>
           <li>&bull; Internet: solo lectura tras balanceador y HTTPS</li>
           <li>&bull; Red interna: TLS + autenticación local (Argon2id)</li>
-          <li>&bull; El código viaja por pipelines; el contenido no</li>
+          <li>&bull; El código llega en paquetes; el contenido no</li>
         </ul>
       </div>
     </div>

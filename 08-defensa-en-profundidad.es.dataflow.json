@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Defensa en profundidad — de la fuente al DOM",
+    "output": "08-defensa-en-profundidad.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "legend": {
+      "entries": {
+        "emphasis": {
+          "label": "texto"
+        },
+        "dashed": {
+          "label": "HTML editorial y enlaces"
+        },
+        "security": {
+          "label": "textos legales"
+        },
+        "database": {
+          "label": "artefacto"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "build",
+        "label": "Build",
+        "focus": [
+          "fuentes",
+          "loader",
+          "legal-build",
+          "data"
+        ],
+        "note": "El loader valida antes de escribir: un idioma ausente o un campo que falta detiene el build."
+      },
+      {
+        "id": "navegador",
+        "label": "Navegador",
+        "focus": [
+          "data",
+          "escape",
+          "editorial",
+          "legal-nav"
+        ],
+        "note": "Cada tipo de contenido tiene su propia capa: nada llega al DOM sin pasar por una."
+      },
+      {
+        "id": "doble-capa",
+        "label": "Doble capa legal",
+        "focus": [
+          "legal-build",
+          "data",
+          "legal-nav",
+          "dom"
+        ],
+        "note": "Los textos legales se sanean en el build y otra vez al pintarlos, con la misma allowlist."
+      }
+    ]
+  },
+  "stages": [
+    {
+      "label": "Fuente · CONTENT"
+    },
+    {
+      "label": "Build · loaders"
+    },
+    {
+      "label": "Artefacto"
+    },
+    {
+      "label": "Navegador · VANILLA"
+    },
+    {
+      "label": "DOM"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "fuentes",
+      "type": "database",
+      "label": "Fuentes editoriales",
+      "sublabel": "YAML · CSV · markdown",
+      "stage": 0,
+      "row": 1,
+      "width": 150
+    },
+    {
+      "id": "loader",
+      "type": "security",
+      "label": "Validación",
+      "sublabel": "esquema · es/en/va",
+      "stage": 1,
+      "row": 0,
+      "width": 150,
+      "tag": "falla cerrado"
+    },
+    {
+      "id": "legal-build",
+      "type": "security",
+      "label": "Render legal",
+      "sublabel": "marked + allowlist",
+      "stage": 1,
+      "row": 2,
+      "width": 150,
+      "tag": "1.ª capa"
+    },
+    {
+      "id": "data",
+      "type": "database",
+      "label": "assets/data/*.js",
+      "sublabel": "datos generados",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "escape",
+      "type": "security",
+      "label": "escapeHtml",
+      "sublabel": "texto y atributos",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "editorial",
+      "type": "security",
+      "label": "HTML editorial",
+      "sublabel": "6 etiquetas · URL",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "legal-nav",
+      "type": "security",
+      "label": "HTML legal",
+      "sublabel": "misma allowlist",
+      "stage": 3,
+      "row": 2,
+      "tag": "2.ª capa"
+    },
+    {
+      "id": "dom",
+      "type": "frontend",
+      "label": "DOM de la vista",
+      "sublabel": "rel=noopener",
+      "stage": 4,
+      "row": 1
+    }
+  ],
+  "flows": [
+    {
+      "id": "fuentes-loader",
+      "from": "fuentes",
+      "to": "loader",
+      "label": "lee y valida",
+      "classification": "contenido",
+      "variant": "emphasis"
+    },
+    {
+      "id": "fuentes-legal",
+      "from": "fuentes",
+      "to": "legal-build",
+      "label": "markdown legal",
+      "classification": "textos legales",
+      "variant": "security"
+    },
+    {
+      "id": "loader-data",
+      "from": "loader",
+      "to": "data",
+      "label": "escribe",
+      "classification": "generado",
+      "variant": "emphasis"
+    },
+    {
+      "id": "legal-data",
+      "from": "legal-build",
+      "to": "data",
+      "label": "HTML saneado",
+      "classification": "legal.js",
+      "variant": "security"
+    },
+    {
+      "id": "data-escape",
+      "from": "data",
+      "to": "escape",
+      "label": "texto",
+      "classification": "506 usos",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "data-editorial",
+      "from": "data",
+      "to": "editorial",
+      "label": "HTML y href",
+      "classification": "allowlist",
+      "variant": "dashed"
+    },
+    {
+      "id": "data-legal",
+      "from": "data",
+      "to": "legal-nav",
+      "label": "HTML legal",
+      "classification": "allowlist",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          385
+        ]
+      ]
+    },
+    {
+      "id": "escape-dom",
+      "from": "escape",
+      "to": "dom",
+      "label": "escapado",
+      "classification": "texto",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          960,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "editorial-dom",
+      "from": "editorial",
+      "to": "dom",
+      "label": "permitido",
+      "classification": "HTML",
+      "variant": "dashed"
+    },
+    {
+      "id": "legal-dom",
+      "from": "legal-nav",
+      "to": "dom",
+      "label": "re-saneado",
+      "classification": "HTML",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "bottom",
+      "via": [
+        [
+          960,
+          385
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Falla cerrado",
+      "items": [
+        "Un idioma ausente detiene el build",
+        "Una URL no permitida no se enlaza",
+        "El HTML fuera de la allowlist se descarta"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Una capa por tipo",
+      "items": [
+        "Texto: escapeHtml en cada interpolación",
+        "HTML editorial: seis etiquetas",
+        "Enlaces: esquemas positivos y noopener"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Dos capas legales",
+      "items": [
+        "El build sanea el markdown legal",
+        "El navegador lo sanea otra vez",
+        "Un legal.js editado a mano sigue saneado"
+      ]
+    }
+  ]
+}

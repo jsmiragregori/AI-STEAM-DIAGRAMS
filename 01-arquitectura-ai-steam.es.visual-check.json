@@ -6,9 +6,9 @@
   "status": "pass",
   "visualReview": "pending",
   "artifact": {
-    "path": "D:\\CEICE\\AI-STEAM-CONTENT\\docs\\diagrams\\01-arquitectura-ai-steam.es.html",
-    "sha256": "21d2fdc3fcdcd97d9dadfc82d3eb77f02c9560413cb716b3c1caa8d2cee3ca48",
-    "bytes": 813332
+    "path": "D:\\CEICE\\AI-STEAM-DIAGRAMS\\01-arquitectura-ai-steam.es.html",
+    "sha256": "e1a72895d1245c61a779e9d4e8a4cce02a97dac683afe82fad7ca576a17b0b52",
+    "bytes": 813272
   },
   "state": {
     "detail": "read",
@@ -16,7 +16,7 @@
   },
   "chrome": {
     "status": "available",
-    "executable": "C:\\Users\\js.miragregori\\AppData\\Local\\Chromium\\Application\\chrome.exe"
+    "executable": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
   },
   "diagnostics": [],
   "containment": {

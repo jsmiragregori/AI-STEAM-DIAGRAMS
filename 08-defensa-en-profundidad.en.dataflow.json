@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Defence in depth — from source to DOM",
+    "output": "08-defensa-en-profundidad.en.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1080,
+      520
+    ],
+    "legend": {
+      "entries": {
+        "emphasis": {
+          "label": "text"
+        },
+        "dashed": {
+          "label": "editorial HTML and links"
+        },
+        "security": {
+          "label": "legal texts"
+        },
+        "database": {
+          "label": "artefact"
+        }
+      }
+    },
+    "views": [
+      {
+        "id": "build",
+        "label": "Build",
+        "focus": [
+          "fuentes",
+          "loader",
+          "legal-build",
+          "data"
+        ],
+        "note": "The loader validates before writing: a missing language or field stops the build."
+      },
+      {
+        "id": "navegador",
+        "label": "Browser",
+        "focus": [
+          "data",
+          "escape",
+          "editorial",
+          "legal-nav"
+        ],
+        "note": "Each kind of content has its own layer: nothing reaches the DOM without passing one."
+      },
+      {
+        "id": "doble-capa",
+        "label": "Two legal layers",
+        "focus": [
+          "legal-build",
+          "data",
+          "legal-nav",
+          "dom"
+        ],
+        "note": "Legal texts are sanitised in the build and again when rendered, with the same allowlist."
+      }
+    ],
+    "locale": "en"
+  },
+  "stages": [
+    {
+      "label": "Source · CONTENT"
+    },
+    {
+      "label": "Build · loaders"
+    },
+    {
+      "label": "Artefact"
+    },
+    {
+      "label": "Browser · VANILLA"
+    },
+    {
+      "label": "DOM"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "fuentes",
+      "type": "database",
+      "label": "Editorial sources",
+      "sublabel": "YAML · CSV · markdown",
+      "stage": 0,
+      "row": 1,
+      "width": 150
+    },
+    {
+      "id": "loader",
+      "type": "security",
+      "label": "Validation",
+      "sublabel": "schema · es/en/va",
+      "stage": 1,
+      "row": 0,
+      "width": 150,
+      "tag": "fails closed"
+    },
+    {
+      "id": "legal-build",
+      "type": "security",
+      "label": "Legal render",
+      "sublabel": "marked + allowlist",
+      "stage": 1,
+      "row": 2,
+      "width": 150,
+      "tag": "1st layer"
+    },
+    {
+      "id": "data",
+      "type": "database",
+      "label": "assets/data/*.js",
+      "sublabel": "generated data",
+      "stage": 2,
+      "row": 1
+    },
+    {
+      "id": "escape",
+      "type": "security",
+      "label": "escapeHtml",
+      "sublabel": "text and attributes",
+      "stage": 3,
+      "row": 0
+    },
+    {
+      "id": "editorial",
+      "type": "security",
+      "label": "Editorial HTML",
+      "sublabel": "6 tags · safe URL",
+      "stage": 3,
+      "row": 1
+    },
+    {
+      "id": "legal-nav",
+      "type": "security",
+      "label": "Legal HTML",
+      "sublabel": "same allowlist",
+      "stage": 3,
+      "row": 2,
+      "tag": "2nd layer"
+    },
+    {
+      "id": "dom",
+      "type": "frontend",
+      "label": "View DOM",
+      "sublabel": "rel=noopener",
+      "stage": 4,
+      "row": 1
+    }
+  ],
+  "flows": [
+    {
+      "id": "fuentes-loader",
+      "from": "fuentes",
+      "to": "loader",
+      "label": "reads and validates",
+      "classification": "content",
+      "variant": "emphasis"
+    },
+    {
+      "id": "fuentes-legal",
+      "from": "fuentes",
+      "to": "legal-build",
+      "label": "legal markdown",
+      "classification": "legal texts",
+      "variant": "security"
+    },
+    {
+      "id": "loader-data",
+      "from": "loader",
+      "to": "data",
+      "label": "writes",
+      "classification": "generated",
+      "variant": "emphasis"
+    },
+    {
+      "id": "legal-data",
+      "from": "legal-build",
+      "to": "data",
+      "label": "sanitised HTML",
+      "classification": "legal.js",
+      "variant": "security"
+    },
+    {
+      "id": "data-escape",
+      "from": "data",
+      "to": "escape",
+      "label": "text",
+      "classification": "506 uses",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "data-editorial",
+      "from": "data",
+      "to": "editorial",
+      "label": "HTML and href",
+      "classification": "allowlist",
+      "variant": "dashed"
+    },
+    {
+      "id": "data-legal",
+      "from": "data",
+      "to": "legal-nav",
+      "label": "legal HTML",
+      "classification": "allowlist",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "left",
+      "via": [
+        [
+          530,
+          385
+        ]
+      ]
+    },
+    {
+      "id": "escape-dom",
+      "from": "escape",
+      "to": "dom",
+      "label": "escaped",
+      "classification": "text",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          960,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "editorial-dom",
+      "from": "editorial",
+      "to": "dom",
+      "label": "allowed",
+      "classification": "HTML",
+      "variant": "dashed"
+    },
+    {
+      "id": "legal-dom",
+      "from": "legal-nav",
+      "to": "dom",
+      "label": "re-sanitised",
+      "classification": "HTML",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "bottom",
+      "via": [
+        [
+          960,
+          385
+        ]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Fails closed",
+      "items": [
+        "A missing language stops the build",
+        "A disallowed URL is not linked",
+        "HTML outside the allowlist is dropped"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "One layer per kind",
+      "items": [
+        "Text: escapeHtml on every interpolation",
+        "Editorial HTML: six tags",
+        "Links: positive schemes and noopener"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Two legal layers",
+      "items": [
+        "The build sanitises legal markdown",
+        "The browser sanitises it again",
+        "A hand-edited legal.js is still sanitised"
+      ]
+    }
+  ]
+}

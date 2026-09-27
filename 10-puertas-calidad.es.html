@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="archify 2.17.0-dev.1">
-  <title>Flujo editorial — edición y publicación Diagram</title>
+  <title>Puertas de calidad — del cambio a la entrega Diagram</title>
   <script>
     // Resolve the theme before first paint so light-preference users don't
     // see a dark flash. The toolbar script below re-applies with UI state.
@@ -5081,11 +5081,11 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
            data-preset-badge-blueprint="BLUEPRINT / REV 01"
            data-preset-badge-editorial="EDITORIAL / FIELD NOTE">
         <div class="pulse-dot"></div>
-        <h1>Flujo editorial — edición y publicación</h1>
+        <h1>Puertas de calidad — del cambio a la entrega</h1>
       </div>
     </div>
 
-    <script id="archify-guided-views-data" type="application/json">[{"id":"editar","label":"Editar","focus":["abrir","editar","validar"],"note":"El editor abre una sección, cambia el contenido y el panel lo valida antes de guardar."},{"id":"previsualizar","label":"Revisar","focus":["validar","previa","regenerar"],"note":"El editor revisa el cambio; en los textos legales, la previa usa la misma función que el build."},{"id":"publicar","label":"Publicar","focus":["regenerar","loader","visible"],"note":"El loader escribe assets/data por NFS y el cambio se ve al instante."},{"id":"corregir","label":"Corregir","focus":["validar","corregir","editar"],"note":"Si la validación falla, no se guarda: se corrige y se reintenta."}]</script>
+    <script id="archify-guided-views-data" type="application/json">[{"id":"suite","label":"Suite","focus":["cambio","decision","pytest","node","guardas","arnes"],"note":"Antes de publicar, el responsable técnico decide si se pasa la suite completa de ambos repositorios."},{"id":"guardas","label":"Guardas","focus":["guardas","arnes","parada"],"note":"Las guardas comparan documento y código: si divergen, la suite falla y obliga a corregir antes de publicar."},{"id":"entrega","label":"Entrega","focus":["node","arnes","verify","paquete"],"note":"Sin datos generados íntegros no se escribe ningún ZIP para DGTIC."}]</script>
 
     <script id="archify-i18n-data" type="application/json">{"locale":"en","messages":{"viewer.kind.frontend":"Frontend","viewer.kind.backend":"Backend","viewer.kind.database":"Database","viewer.kind.cloud":"Cloud","viewer.kind.security":"Security","viewer.kind.messagebus":"Message bus","viewer.kind.external":"External","viewer.kind.neutral":"Neutral","viewer.kind.node":"Node","viewer.kind.start":"Start","viewer.kind.active":"Active","viewer.kind.waiting":"Waiting","viewer.kind.decision":"Decision","viewer.kind.success":"Success","viewer.kind.failure":"Failure","viewer.toolbar.actions":"Diagram actions","viewer.theme.toggle.title":"Toggle theme (T)","viewer.theme.toggle":"Toggle color theme","viewer.theme.dark":"Dark","viewer.theme.light":"Light","viewer.preset.choose.title":"Choose visual style (S cycles)","viewer.preset.choose":"Choose visual style","viewer.preset.style":"Style","viewer.preset.menu":"Visual style","viewer.preset.identity":"Visual identity","viewer.preset.cycles":"S cycles","viewer.preset.classic":"Classic","viewer.preset.classic.short":"Classic","viewer.preset.classic.hint":"Stable technical default","viewer.preset.flow":"Signal Flow","viewer.preset.flow.short":"Flow","viewer.preset.flow.hint":"Motion-forward presentation","viewer.preset.blueprint":"Blueprint","viewer.preset.blueprint.hint":"Engineering review","viewer.preset.editorial":"Editorial","viewer.preset.editorial.hint":"Publication and launch notes","viewer.preset.badge.signalFlow":"SIGNAL FLOW","viewer.preset.badge.blueprint":"BLUEPRINT / REV 01","viewer.preset.badge.editorial":"EDITORIAL / FIELD NOTE","viewer.preset.badge.editorialPlate":"ARCHIFY / PLATE 04","viewer.preset.current":"Visual style: {style}. Choose visual style","viewer.motion.live":"Live","viewer.motion.still":"Still","viewer.motion.pause":"Pause motion","viewer.motion.resume":"Resume motion","viewer.motion.reduced":"Motion paused by reduced-motion preference","viewer.motion.hidden":"Motion paused while this page is hidden","viewer.motion.yielding":"Pause motion; currently yielding to {owner}","viewer.motion.yielding.title":"Live preview enabled · yielding to {owner}","viewer.owner.story":"the guided story","viewer.owner.chapter":"the active chapter","viewer.owner.chapterPreview":"the chapter delta preview","viewer.owner.handoff":"the chapter handoff","viewer.owner.route":"Route Probe","viewer.owner.lens":"Semantic Lens","viewer.owner.relationship":"Relationship Preview","viewer.owner.intent":"Intent Trace","viewer.owner.focus":"semantic focus","viewer.owner.legend":"legend preview","viewer.owner.reader":"reader interaction","viewer.present.enter":"Enter presentation stage","viewer.present.enter.title":"Presentation stage (F)","viewer.present.exit":"Exit presentation stage","viewer.present.exit.title":"Exit presentation stage (F or Escape)","viewer.present.present":"Present","viewer.present.exit.label":"Exit","viewer.export.button":"Export","viewer.export.button.title":"Export diagram (E)","viewer.export.diagram":"Export diagram","viewer.export.menu":"Export","viewer.export.subtitle":"Portable, clean outputs","viewer.export.share":"Share","viewer.export.shareCard":"Share Card","viewer.export.routeShareCard":"Route Share Card","viewer.export.reachShareCard":"Reach Share Card","viewer.export.copyShareCard":"Copy Share Card","viewer.export.copyDiagram":"Copy diagram","viewer.export.clipboardPng":"PNG to clipboard","viewer.export.raster":"Raster images","viewer.export.image":"Image","viewer.export.lossless":"Lossless image","viewer.export.compact":"Compact image","viewer.export.modern":"Modern image","viewer.export.vectorMotion":"Vector and motion","viewer.export.vectorMotion.heading":"Vector \u0026 motion","viewer.export.editable":"Editable vector","viewer.export.motion6s":"6s motion","viewer.export.unsupported":"Not supported by this browser","viewer.export.clipboardUnsupported":"Clipboard image write not supported by this browser","viewer.export.clipboardUnsupported.period":"Clipboard image write not supported by this browser.","viewer.export.clipboardUnsupported.short":"Clipboard image write not supported in this browser.","viewer.export.motionUnavailable":"Motion capture unavailable in this browser","viewer.export.webmUnavailable":"WebM unavailable in this browser","viewer.export.failed":"Export failed: {message}","viewer.export.unknownVariant":"Unknown Share Card variant: {variant}","viewer.export.routeRequired":"Trace a route before exporting a Route Share Card","viewer.export.reachRequired":"Trace authored reach before exporting a Reach Share Card","viewer.export.unknown":"unknown","viewer.export.routeFailed":"Route Share Card export failed: {message}","viewer.export.reachFailed":"Reach Share Card export failed: {message}","viewer.export.copyFailed":"Copy failed: {message}","viewer.export.copiedPng":"Copied PNG to clipboard","viewer.export.copiedShare":"Copied Share Card","viewer.export.downloadedShare":"Downloaded Share Card","viewer.export.downloadedRoute":"Downloaded Route Share Card","viewer.export.downloadedReach":"Downloaded Reach Share Card","viewer.export.downloadedWebm":"Downloaded WebM","viewer.export.recording":"Recording 6 seconds of motion…","viewer.export.card.routeSummary.one":"Route: {source} → {target} · {count} directed hop","viewer.export.card.routeSummary.other":"Route: {source} → {target} · {count} directed hops","viewer.export.card.reachSummary":"Authored {direction} from {origin} · {nodes} · {links} · max {hops}","viewer.export.card.node.one":"{count} node","viewer.export.card.node.other":"{count} nodes","viewer.export.card.link.one":"{count} link","viewer.export.card.link.other":"{count} links","viewer.export.card.hop.one":"{count} hop","viewer.export.card.hop.other":"{count} hops","viewer.export.card.routeBadge":"ARCHIFY · ROUTE · {hops}","viewer.export.card.reachBadge":"ARCHIFY · {direction} REACH","viewer.export.card.defaultBadge":"ARCHIFY · {preset} · {theme}","viewer.export.direction.upstream":"Upstream","viewer.export.direction.downstream":"Downstream","viewer.export.error.canvasUnavailable":"Canvas unavailable for {label}","viewer.export.error.contextUnavailable":"2D canvas context unavailable for {label}","viewer.export.error.toBlobUnavailable":"canvas.toBlob unavailable for {label}","viewer.export.error.toBlobNull":"canvas.toBlob returned no data for {label}","viewer.export.error.variantsCombined":"Share Card variants cannot be combined","viewer.export.error.viewerState":"Share Card export could not remove temporary viewer state","viewer.export.error.routeState":"Route Card export could not preserve the resolved route safely","viewer.export.error.reachState":"Reach Card export could not preserve authored reach safely","viewer.export.error.webmRequirements":"WebM motion export requires a trace animation and browser MediaRecorder support","viewer.export.error.mediaRecorder":"MediaRecorder failed","viewer.export.error.emptyWebm":"MediaRecorder produced an empty WebM","viewer.export.error.webmBackground":"SVG background could not be loaded for WebM export","viewer.guided.region":"Guided diagram views","viewer.guided.previous":"Previous guided view","viewer.guided.previous.title":"Previous guided view ([)","viewer.guided.next":"Next guided view","viewer.guided.next.title":"Next guided view (])","viewer.guided.views":"Guided views","viewer.guided.explore":"Explore this system","viewer.guided.intro":"Step through curated paths without changing the source diagram.","viewer.guided.trail":"Story trail","viewer.guided.beat":"Beat","viewer.guided.nextBeat":"Next","viewer.guided.play":"Play guided story","viewer.guided.play.title":"Play guided story (P)","viewer.guided.pause":"Pause guided story","viewer.guided.pause.title":"Pause guided story (P)","viewer.guided.replay":"Replay guided story","viewer.guided.replay.title":"Replay guided story (P)","viewer.guided.playStory":"Play story","viewer.guided.pauseStory":"Pause","viewer.guided.replayStory":"Replay story","viewer.guided.motionUnavailable":"Story playback unavailable while motion is Still","viewer.guided.enableMotion":"Switch motion to Live to play the guided story","viewer.guided.selectBeatLink":"Select a Story Beat to copy its exact link","viewer.guided.copyMoment":"Copy moment","viewer.guided.momentCopied":"Moment link copied","viewer.guided.momentCopyFailed":"Could not copy story moment link","viewer.guided.copied":"Copied","viewer.guided.copyFailed":"Copy failed","viewer.guided.showAll":"Show all","viewer.guided.showAll.aria":"Show entire diagram","viewer.guided.chapters":"Story chapters","viewer.guided.storyTrail":"Story trail for {label}: {count} beats","viewer.guided.chapter.open":"Open chapter {index} of {total}: {label}, {count} stops","viewer.guided.chapter.current":"Current chapter {index} of {total}: {label}, {count} stops","viewer.guided.chapter.selectedNodes":"{count} selected nodes","viewer.guided.chapter.stops":"{count} stops","viewer.guided.chapter.stop.one":"{count} stop","viewer.guided.chapter.stop.other":"{count} stops","viewer.guided.chapter.current.title":"{label} — current chapter, {count} stops","viewer.guided.chapter.delta.expanded":"{stay} stay, {enter} enter, {leave} leave","viewer.guided.chapter.delta.aria":"Open chapter {index} of {total}: {label}. Chapter focus delta: {delta}","viewer.guided.chapter.delta.title":"{label} — {delta} chapter focus","viewer.guided.handoff":"{from} → {to} · via {label}","viewer.guided.share.chapter":"Chapter {index} / {total}","viewer.guided.share.initial":"Chapter 01 / 01","viewer.guided.share.default":"Guided chapter","viewer.guided.state.ready":"Ready","viewer.guided.state.playing":"Playing","viewer.guided.state.settled":"Settled","viewer.guided.state.paused":"Paused","viewer.guided.state.pinned":"Pinned","viewer.guided.state.still":"Still","viewer.guided.share.step":"Step {index} / {total} · {label}","viewer.guided.share.staticMoment":"{step} · Static moment","viewer.guided.share.complete":"{count} steps complete · {note}","viewer.guided.share.settled":"Path settled for reading.","viewer.guided.share.staticPath":"{count} steps · Static path","viewer.guided.share.ready":"{count} steps · Ready","viewer.guided.share.aria":"{state} chapter {index} of {total}: {label}. {beat}. {route}","viewer.guided.beat.start":"Beat {index} / {total} · {label} · starting point","viewer.guided.beat.forward":"Beat {index} / {total} · {from} → {to}","viewer.guided.beat.reverse":"Beat {index} / {total} · {from} → {to} · reverse authored link","viewer.guided.beat.multiple":"Beat {index} / {total} · {from} ⇄ {to} · {count} authored links","viewer.guided.beat.group":"Beat {index} / {total} · {from} · {to} · grouped · no direct link","viewer.guided.beat.aria.prefix":"Story beat {index} of {total}: {label}. ","viewer.guided.beat.aria.start":"Starting point.","viewer.guided.beat.aria.forward":"From {from} through one authored forward relationship.","viewer.guided.beat.aria.reverse":"From {from}; the authored relationship points from {to} to {from}.","viewer.guided.beat.aria.multiple":"From {from} through {count} authored relationships; shown without arbitrary motion.","viewer.guided.beat.aria.group":"Grouped from {from} with no direct authored relationship.","viewer.guided.caption.start":"Starting point","viewer.guided.caption.grouped":"Grouped transition · no direct authored link","viewer.guided.caption.more":" +{count} more","viewer.guided.caption.reverse":"Reverse authored relationship","viewer.guided.caption.relationships":"{count} authored relationships","viewer.guided.caption.relationship":"Authored relationship","viewer.guided.caption.direction":"authored direction: {from} → {to}","viewer.guided.caption.starting":"Authored starting point","viewer.guided.beatLink":"Copy link to current story moment: Beat {index} of {total}: {label}","viewer.guided.noStory":"This diagram has no authored guided story.","viewer.guide.eyebrow":"Diagram guide","viewer.guide.close":"Close diagram guide","viewer.guide.inspecting":"Inspecting compiled semantics","viewer.guide.actions":"Diagram exploration actions","viewer.guide.find":"Find any node","viewer.guide.find.hint":"Search labels, responsibilities, kinds, and stable IDs.","viewer.guide.route":"Trace a route","viewer.guide.route.aria":"Trace a directed route","viewer.guide.route.hint":"Ask how two semantic nodes connect in authored direction.","viewer.guide.map":"See the whole system","viewer.guide.map.hint":"Open Semantic Radar with a live viewport and stable nodes.","viewer.guide.lens":"Compare semantic kinds","viewer.guide.lens.hint":"Count roles, reveal their traffic, and compare direct authored links.","viewer.guide.story":"Play the guided story","viewer.guide.story.hint":"Walk the authored chapters and real relationships.","viewer.guide.present":"Enter Presentation Stage","viewer.guide.present.hint":"Give the live diagram the viewport without changing export.","viewer.guide.shortcuts":"Additional keyboard shortcuts","viewer.guide.shortcut.export":"Export","viewer.guide.shortcut.theme":"Theme","viewer.guide.shortcut.style":"Style","viewer.guide.shortcut.reset":"Reset","viewer.guide.shortcut.zoomIn":"Zoom in","viewer.guide.shortcut.zoomOut":"Zoom out","viewer.guide.shortcut.close":"Close","viewer.guide.facts":"{nodes} · {relationships} · {views}","viewer.guide.fact.node.one":"{count} semantic node","viewer.guide.fact.node.other":"{count} semantic nodes","viewer.guide.fact.relationship.one":"{count} relationship","viewer.guide.fact.relationship.other":"{count} relationships","viewer.guide.fact.view.one":"{count} guided view","viewer.guide.fact.view.other":"{count} guided views","viewer.guide.story.available.one":"Walk {count} authored chapter and its real relationships.","viewer.guide.story.available.other":"Walk {count} authored chapters and their real relationships.","viewer.guide.story.unavailable":"No authored guided story in this diagram.","viewer.guide.open":"Open diagram guide","viewer.guide.noStory":"This diagram has no authored guided story.","viewer.finder.title":"Find a node","viewer.finder.close":"Close node finder","viewer.finder.placeholder":"Search labels or IDs","viewer.finder.search":"Search diagram nodes","viewer.finder.results":"Diagram nodes","viewer.finder.empty":"No matching nodes","viewer.finder.result.focus":"Focus {label}","viewer.finder.result.routeStart":"Choose {label} as route start","viewer.finder.result.routeTarget":"Choose {label} as route destination, {links}","viewer.finder.status.empty":"No matching nodes","viewer.finder.status.count.one":"{count} matching node","viewer.finder.status.count.other":"{count} matching nodes","viewer.finder.noun.nodes":"nodes","viewer.finder.link.one":"{count} link","viewer.finder.link.other":"{count} links","viewer.finder.result.focus.one":"Focus {label}, {count} related connection","viewer.finder.result.focus.other":"Focus {label}, {count} related connections","viewer.finder.status.filtered":"{visible} of {available} {noun}","viewer.finder.status.all":"{available} {noun}","viewer.passport.eyebrow":"Semantic passport","viewer.passport.metadata":"Node metadata","viewer.passport.evidence":"Verified source evidence","viewer.passport.verified":"Verified source","viewer.passport.verificationScope":"Verified against local Git at the pinned revision. Remote access has not been checked.","viewer.passport.reach":"Authored reach","viewer.passport.reach.trace":"Trace authored reachability","viewer.passport.upstream":"Upstream","viewer.passport.downstream":"Downstream","viewer.passport.upstream.trace":"Trace upstream authored reachability","viewer.passport.downstream.trace":"Trace downstream authored reachability","viewer.passport.close":"Close semantic passport","viewer.passport.copy":"Copy link","viewer.passport.copy.focus":"Copy link to focused node","viewer.passport.relations":"Relations","viewer.passport.relations.show":"Show connected relationships","viewer.passport.relations.hide":"Hide connected relationships","viewer.passport.relations.list":"Connected relationships","viewer.passport.copyRelation":"Copy relation","viewer.passport.copyNode":"Copy node","viewer.passport.copyPinned":"Copy link to pinned relationship","viewer.passport.copySource":"Copy link to source node","viewer.passport.copy.focused.success":"Focused node link copied","viewer.passport.copy.pinned.success":"Pinned relationship link copied","viewer.passport.copy.focused.failed":"Could not copy focused node link","viewer.passport.copy.pinned.failed":"Could not copy pinned relationship link","viewer.passport.relationship.none":"No connected relationships","viewer.passport.relationship.count.one":"{count} relation","viewer.passport.relationship.count.other":"{count} relations","viewer.passport.relationship.show.one":"Show {count} connected relationship","viewer.passport.relationship.show.other":"Show {count} connected relationships","viewer.passport.relationship.summary":"{out} outgoing · {in} incoming{loops}","viewer.passport.relationship.loops":" · {count} loop","viewer.passport.relationship.explorer":"Direct relationship explorer","viewer.passport.relationship.help":"Use arrow keys to explore relationships. Press Enter or Space to pin details; Escape clears.","viewer.passport.relationship.loopsBack":"loops back","viewer.passport.relationship.connectsTo":"connects to","viewer.passport.relationship.connectsFrom":"connects from","viewer.passport.relationship.pinned":"Pinned relationship · {from} → {to} · {label}","viewer.passport.relationship.inspect":"Inspect relationship {index} of {total}: {from} to {to}, {label}. Press Enter for details.","viewer.passport.relationship.group.out":"Outgoing","viewer.passport.relationship.group.in":"Incoming","viewer.passport.relationship.group.loop":"Self loops","viewer.passport.relationship.row":"{group}: {relationship}, {neighbor}","viewer.passport.relationship.direction.out":"OUT →","viewer.passport.relationship.direction.in":"← IN","viewer.passport.relationship.direction.loop":"LOOP","viewer.passport.sourceCount.one":"{count} verified source reference","viewer.passport.sourceCount.other":"{count} verified source references","viewer.passport.sourceMarker":"SRC","viewer.passport.beacon.one":"{count} verified source; focus this node to inspect","viewer.passport.beacon.other":"{count} verified sources; focus this node to inspect","viewer.passport.repository.open":"Open verified repository revision {revision}","viewer.passport.source.open":"Open verified source {path} at revision {revision}","viewer.passport.source.openLink":"Open ↗","viewer.passport.reach.upstream.one":"Trace {count} upstream authored node","viewer.passport.reach.upstream.other":"Trace {count} upstream authored nodes","viewer.passport.reach.downstream.one":"Trace {count} downstream authored node","viewer.passport.reach.downstream.other":"Trace {count} downstream authored nodes","viewer.passport.reach.noUpstream":"No upstream authored nodes","viewer.passport.reach.noDownstream":"No downstream authored nodes","viewer.passport.reach.status":"{direction} · {nodes} nodes · {links} links · max {hops} hops","viewer.route.eyebrow":"Route probe","viewer.route.start":"Choose a start node","viewer.route.start.find":"Find start","viewer.route.start.find.aria":"Find a route start","viewer.route.copy":"Copy link","viewer.route.copy.aria":"Copy link to traced route","viewer.route.clear":"Clear","viewer.route.clear.aria":"Clear route probe","viewer.route.traced":"Traced route","viewer.route.pickTwo":"Pick two semantic nodes on the diagram","viewer.route.pickOne":"Pick a semantic node on the diagram","viewer.route.controls":"Route journey controls","viewer.route.previous":"Previous route position","viewer.route.play":"Play route journey","viewer.route.pause":"Pause route journey","viewer.route.replay":"Replay route journey","viewer.route.next":"Next route position","viewer.route.journey":"Journey","viewer.route.pause.label":"Pause","viewer.route.replay.label":"Replay","viewer.route.overview":"Overview","viewer.route.overview.aria":"Show complete route overview","viewer.route.instructions":"Choose the source, then the destination. Direction matters.","viewer.route.destination":"Choose a destination from {label}","viewer.route.destination.find":"Find target","viewer.route.destination.find.aria":"Find a reachable route destination","viewer.route.differentDestination":"Choose a different destination","viewer.route.distinct":"A route needs two distinct semantic nodes.","viewer.route.unreachable":"No directed route to {label}","viewer.route.unreachable.detail":"{target} is not reachable from {source}. Pick a highlighted destination.","viewer.route.start.instructions":"Select the source. The next step will reveal only directed destinations.","viewer.route.copy.success":"Traced route link copied","viewer.route.copy.failed":"Could not copy traced route link","viewer.route.position":"Route position {index} of {total}: {label}","viewer.route.step":"Step {index} of {total} · {phase} · {label}","viewer.route.motionRequired":"Automatic journey requires Live motion","viewer.route.trigger.clear":"Clear traced route","viewer.route.overview.status":"{nodes} · {hops} · shortest authored route","viewer.route.overview.node.one":"{count} node","viewer.route.overview.node.other":"{count} nodes","viewer.route.overview.hop.one":"{count} directed hop","viewer.route.overview.hop.other":"{count} directed hops","viewer.route.phase.playing":"Playing","viewer.route.phase.complete":"Complete","viewer.route.phase.inspecting":"Inspecting","viewer.route.destination.count.one":"{count} directed destination available. Pick a highlighted node.","viewer.route.destination.count.other":"{count} directed destinations available. Pick a highlighted node.","viewer.route.noOutgoing":"No outgoing route starts here. Clear and choose another source.","viewer.route.result.title":"{source} to {target}","viewer.route.finder.source.title":"Choose route start","viewer.route.finder.source.placeholder":"Search route sources","viewer.route.finder.source.empty":"No matching route sources","viewer.route.finder.source.results":"Nodes that can start a route","viewer.route.finder.source.noun":"route sources","viewer.route.finder.source.badge":"start","viewer.route.finder.target.title":"Destination from {label}","viewer.route.finder.target.placeholder":"Search reachable destinations","viewer.route.finder.target.empty":"No matching reachable destinations","viewer.route.finder.target.results":"Reachable route destinations","viewer.route.finder.target.noun":"reachable destinations","viewer.route.hop.one":"{count} hop","viewer.route.hop.other":"{count} hops","viewer.lens.eyebrow":"Semantic lens","viewer.lens.title":"Compare system roles","viewer.lens.close":"Close semantic lens","viewer.lens.instruction":"Choose up to two semantic kinds. One reveals its real traffic; two compare only direct authored relationships.","viewer.lens.kinds":"Semantic kinds","viewer.lens.choose":"Choose a kind to inspect its nodes and touching relationships.","viewer.lens.copy":"Copy link to semantic lens","viewer.lens.clear":"Clear semantic lens","viewer.lens.open":"Open semantic lens","viewer.lens.openActive":"Open active semantic lens","viewer.lens.legend":"Semantic legend","viewer.lens.legend.inspect.one":"Inspect {label}, {count} node","viewer.lens.legend.inspect.other":"Inspect {label}, {count} nodes","viewer.lens.kind.count.one":"{label}, {count} node","viewer.lens.kind.count.other":"{label}, {count} nodes","viewer.lens.compare.one":"{first} → {second}: {forward} · {second} → {first}: {reverse} · {count} direct relationship","viewer.lens.compare.other":"{first} → {second}: {forward} · {second} → {first}: {reverse} · {count} direct relationships","viewer.lens.single":"{nodes} · {relationships} · connected peers remain visible","viewer.lens.node.one":"{count} {label} node","viewer.lens.node.other":"{count} {label} nodes","viewer.lens.relationship.one":"{count} touching relationship","viewer.lens.relationship.other":"{count} touching relationships","viewer.radar.title":"Semantic radar","viewer.radar.building":"Building overview","viewer.radar.openFull":"Open full semantic radar","viewer.radar.open":"Open radar","viewer.radar.close":"Close semantic radar","viewer.radar.surface":"Diagram overview. Click a node to focus it, or use arrow keys to pan.","viewer.radar.click":"Click node","viewer.radar.drag":"Drag to pan","viewer.radar.space":"Semantic radar needs more MAP space.","viewer.radar.nodes":"Semantic diagram radar nodes","viewer.radar.focus":"Focus {label} from Semantic Radar","viewer.radar.status":"{count} nodes · {viewport}","viewer.radar.fullMap":"{count} nodes · full map","viewer.radar.compacted":"Radar compacted to avoid covering the Semantic Passport or MAP controls.","viewer.radar.cancelWaiting":"Cancel semantic radar waiting for more MAP space","viewer.radar.needsSpace":"Semantic radar needs more visible MAP space","viewer.radar.viewport.full":"full map","viewer.radar.viewport.width":"{percent}% width","viewer.radar.viewport.scale":"{percent}% viewport","viewer.nav.controls":"Diagram view controls","viewer.nav.route":"Trace a directed route","viewer.nav.route.title":"Trace route (R)","viewer.nav.route.short":"PATH","viewer.nav.radar":"Open semantic radar","viewer.nav.radar.title":"Semantic radar (M)","viewer.nav.radar.short":"MAP","viewer.nav.lens":"Open semantic lens","viewer.nav.lens.title":"Semantic lens (L)","viewer.nav.lens.short":"LENS","viewer.nav.find":"Find a node","viewer.nav.find.title":"Find a node (/)","viewer.nav.guide":"Open diagram guide","viewer.nav.guide.title":"Diagram guide (?)","viewer.nav.zoomOut":"Zoom out","viewer.nav.zoomOut.title":"Zoom out (-)","viewer.nav.reset":"Reset diagram view","viewer.nav.reset.title":"Reset view (0)","viewer.nav.read":"READ","viewer.nav.zoomIn":"Zoom in","viewer.nav.zoomIn.title":"Zoom in (+)","viewer.nav.camera":"{hint}. Reset diagram view","viewer.nav.camera.title":"{semantic}{hint} · reset view (0)","viewer.nav.camera.semantic":"Semantic camera active · ","viewer.nav.level.map":"MAP","viewer.nav.level.read":"READ","viewer.nav.level.full":"FULL","viewer.nav.level.auto":"AUTO","viewer.nav.detail.map":"Zoom in to reveal relationship labels and node context","viewer.nav.detail.read":"Zoom in again to reveal tags and annotations","viewer.nav.detail.full":"Full diagram detail","viewer.intent.summary":"{label}. {out} outgoing, {in} incoming{loops}. {total} connections. Press Enter for details.","viewer.intent.loops":", {count} self loop","viewer.common.copied":"Copied","viewer.common.copyFailed":"Copy failed","viewer.common.copyLink":"Copy link","viewer.common.clear":"Clear","viewer.common.close":"Close"}}</script>
     <div class="guided-views no-print" id="guided-views" hidden aria-label="Guided diagram views">
@@ -5130,8 +5130,8 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <!-- Main Diagram -->
     <div class="diagram-container" data-detail-level="read"
          data-preset-badge-editorial-plate="ARCHIFY / PLATE 04">
-      <svg viewBox="0 0 1180 668" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
-        <title id="archify-diagram-title">Flujo editorial — edición y publicación</title>
+      <svg viewBox="0 0 930 540" role="img" lang="en" aria-labelledby="archify-diagram-title archify-diagram-description" data-preset="classic" data-quality-profile="showcase">
+        <title id="archify-diagram-title">Puertas de calidad — del cambio a la entrega</title>
         <desc id="archify-diagram-description">A workflow diagram generated by Archify.</desc>
         <!-- Definitions -->
         <defs>
@@ -5156,193 +5156,197 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
         <rect width="100%" height="100%" fill="url(#grid)" />
 
         <!-- Swimlanes -->
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="1051" height="106" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="54" y="74" class="t-dim" font-size="10" font-weight="600">01 / Edición · CEICE</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-0" x="40" y="52" width="722" height="106" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="74" class="t-dim" font-size="10" font-weight="600">01 / Cambio y entrega</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="178" width="1051" height="114" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="54" y="200" class="t-dim" font-size="10" font-weight="600">02 / Panel de gestión</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-1" x="40" y="178" width="722" height="106" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="200" class="t-dim" font-size="10" font-weight="600">02 / Pruebas CONTENT</text>
 
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="312" width="1051" height="106" rx="10" class="c-lane" stroke-width="1"/>
-        <text x="54" y="334" class="t-dim" font-size="10" font-weight="600">03 / Generación y publicación</text>
-
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-3" x="40" y="438" width="1051" height="106" rx="10" class="c-lane" stroke-width="1"/>
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="exception-lane" data-composition-frame-id="lane-3-exception" x="46" y="444" width="1039" height="94" rx="8" class="c-security-group" stroke-width="1"/>
-        <text x="54" y="460" class="t-security" font-size="10" font-weight="600">EX / Revisión y corrección</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="lane" data-composition-frame-id="lane-2" x="40" y="304" width="722" height="106" rx="10" class="c-lane" stroke-width="1"/>
+        <text x="54" y="326" class="t-dim" font-size="10" font-weight="600">03 / Pruebas VANILLA</text>
 
         <!-- Phase headers -->
-        <line x1="68" y1="35" x2="320" y2="35" class="a-default" stroke-width="1.1"/>
-        <rect x="68" y="27" width="252" height="16" rx="4" class="c-mask"/>
-        <text x="194" y="39" class="t-muted" font-size="8" font-weight="600" text-anchor="middle">Editar</text>
-        <line x1="348" y1="35" x2="642.8" y2="35" class="a-emphasis" stroke-width="1.1"/>
-        <rect x="348" y="27" width="294.79999999999995" height="16" rx="4" class="c-mask"/>
-        <text x="495.4" y="39" class="t-backend" font-size="8" font-weight="600" text-anchor="middle">Validar y previsualizar</text>
-        <line x1="739.2" y1="35" x2="1062.8000000000002" y2="35" class="a-dashed" stroke-width="1.1"/>
-        <rect x="739.2" y="27" width="323.6" height="16" rx="4" class="c-mask"/>
-        <text x="901" y="39" class="t-messagebus" font-size="8" font-weight="600" text-anchor="middle">Publicar</text>
+        <line x1="48" y1="35" x2="260" y2="35" class="a-default" stroke-width="1.1"/>
+        <rect x="48" y="27" width="212" height="16" rx="4" class="c-mask"/>
+        <text x="154" y="39" class="t-muted" font-size="8" font-weight="600" text-anchor="middle">Cambio</text>
+        <line x1="288" y1="35" x2="500" y2="35" class="a-emphasis" stroke-width="1.1"/>
+        <rect x="288" y="27" width="212" height="16" rx="4" class="c-mask"/>
+        <text x="394" y="39" class="t-backend" font-size="8" font-weight="600" text-anchor="middle">Suite</text>
+        <line x1="528" y1="35" x2="740" y2="35" class="a-dashed" stroke-width="1.1"/>
+        <rect x="528" y="27" width="212" height="16" rx="4" class="c-mask"/>
+        <text x="634" y="39" class="t-messagebus" font-size="8" font-weight="600" text-anchor="middle">Entrega</text>
 
         <!-- Workflow groups -->
-        <rect data-graph-role="structural-frame" data-composition-frame-kind="group" data-composition-frame-id="group-0" x="324" y="216" width="152" height="72" rx="9" class="c-security-group" stroke-width="1"/>
-        <text x="334" y="214" class="t-security" font-size="7" font-weight="600">Puerta de validación</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="group" data-composition-frame-id="group-0" x="284" y="216" width="220" height="64" rx="9" class="c-lane" stroke-width="1"/>
+        <text x="294" y="214" class="t-backend" font-size="7" font-weight="600">npm test</text>
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="group" data-composition-frame-id="group-1" x="284" y="342" width="220" height="64" rx="9" class="c-lane" stroke-width="1"/>
+        <text x="294" y="340" class="t-backend" font-size="7" font-weight="600">node --test</text>
 
         <!-- Edge paths -->
-        <path data-edge-from="abrir" data-edge-to="editar" data-edge-key="0" data-edge-id="abrir-editar" data-composition-points="180,120;208,120" d="M 180 120 L 208 120" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="corregir" data-edge-to="editar" data-edge-label="revisar" data-edge-key="1" data-edge-id="corregir-editar" data-composition-points="318,506;267,506;267,146" d="M 318 506 L 267 506 L 267 146" class="a-dashed" stroke-width="1.4" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="editar" data-edge-to="validar" data-edge-label="guardar cambios" data-edge-key="2" data-edge-id="editar-validar" data-composition-points="274,146;274,308;394,308;394,287" d="M 274 146 L 274 308 L 394 308 L 394 287" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="loader" data-edge-to="visible" data-edge-label="assets/data · NFS" data-edge-key="3" data-edge-id="loader-visible" data-composition-points="851.1999999999999,380;950.8,380" d="M 851.1999999999999 380 L 950.8 380" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="previa" data-edge-to="regenerar" data-edge-label="aprobada" data-edge-key="4" data-edge-id="previa-regenerar" data-composition-points="662.8,253;719.1999999999999,253" d="M 662.8 253 L 719.1999999999999 253" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="regenerar" data-edge-to="loader" data-edge-label="ejecuta cms:*" data-edge-key="5" data-edge-id="regenerar-loader" data-composition-points="851.1999999999999,253;867.1999999999999,253;867.1999999999999,302;785.1999999999999,302;785.1999999999999,354" d="M 851.1999999999999 253 L 867.1999999999999 253 L 867.1999999999999 302 L 785.1999999999999 302 L 785.1999999999999 354" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="validar" data-edge-to="corregir" data-edge-label="error de validación" data-edge-key="6" data-edge-id="validar-corregir" data-composition-points="394,287;394,365;486,365;486,506;470,506" d="M 394 287 L 394 365 L 486 365 L 486 506 L 470 506" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="validar" data-edge-to="previa" data-edge-label="sin errores" data-edge-key="7" data-edge-id="validar-previa" data-composition-points="460,253;530.8,253" d="M 460 253 L 530.8 253" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="arnes" data-edge-to="parada" data-edge-label="rojo" data-edge-key="0" data-composition-points="454,398;454,414;694,414;694,398" d="M 454 398 L 454 414 L 694 414 L 694 398" class="a-security" stroke-width="1.4" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="arnes" data-edge-to="verify" data-edge-label="verde" data-edge-key="1" data-composition-points="500,365;574,365;574,154" d="M 500 365 L 574 365 L 574 154" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="cambio" data-edge-to="decision" data-edge-key="2" data-composition-points="140,120;168,120" d="M 140 120 L 168 120" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="decision" data-edge-to="guardas" data-edge-label="VANILLA" data-edge-key="3" data-composition-points="207,154;207,372;288,372" d="M 207 154 L 207 372 L 288 372" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="decision" data-edge-to="pytest" data-edge-label="sí" data-edge-key="4" data-composition-points="221,154;221,246;288,246" d="M 221 154 L 221 246 L 288 246" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="guardas" data-edge-to="arnes" data-edge-key="5" data-composition-points="380,372;408,372" d="M 380 372 L 408 372" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="node" data-edge-to="verify" data-edge-label="verde" data-edge-key="6" data-composition-points="454,220;454,120;528,120" d="M 454 220 L 454 120 L 528 120" class="a-emphasis" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="pytest" data-edge-to="node" data-edge-key="7" data-composition-points="380,246;408,246" d="M 380 246 L 408 246" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
+        <path data-edge-from="verify" data-edge-to="paquete" data-edge-key="8" data-composition-points="620,120;648,120" d="M 620 120 L 648 120" class="a-default" stroke-width="1.4" marker-end="url(#arrowhead)"/>
 
         <!-- Nodes -->
-        <g id="node-abrir" data-node-id="abrir" data-node-label="Abrir sección" tabindex="0" role="button" aria-label="Focus Abrir sección, menú del panel, Edición · CEICE › Editar" aria-pressed="false" data-node-kind="external" data-node-sublabel="menú del panel" data-node-context="Edición · CEICE › Editar">
-          <title>Abrir sección · menú del panel · Edición · CEICE › Editar</title>
-          <rect x="48" y="94" width="132" height="52" rx="6" class="c-mask"/>
-          <rect x="48" y="94" width="132" height="52" rx="6" class="c-external" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(54 100) scale(0.6875)">
-            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
-            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="114" y="115" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Abrir sección</text>
-          <text data-detail="context" x="114" y="132" class="t-muted" font-size="8" text-anchor="middle">menú del panel</text>
-        </g>
-
-        <g id="node-editar" data-node-id="editar" data-node-label="Editar contenido" tabindex="0" role="button" aria-label="Focus Editar contenido, YAML/CSV · es/en/va, Edición · CEICE › Editar" aria-pressed="false" data-node-kind="external" data-node-sublabel="YAML/CSV · es/en/va" data-node-context="Edición · CEICE › Editar">
-          <title>Editar contenido · YAML/CSV · es/en/va · Edición · CEICE › Editar</title>
-          <rect x="208" y="94" width="132" height="52" rx="6" class="c-mask"/>
-          <rect x="208" y="94" width="132" height="52" rx="6" class="c-external" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(214 100) scale(0.6875)">
-            <rect x="2.5" y="5" width="8.5" height="8" rx="1.5"/>
-            <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="274" y="115" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Editar contenido</text>
-          <text data-detail="context" x="274" y="132" class="t-muted" font-size="8" text-anchor="middle">YAML/CSV · es/en/va</text>
-        </g>
-
-        <g id="node-validar" data-node-id="validar" data-node-label="Validar" tabindex="0" role="button" aria-label="Focus Validar, esquema y campos, Panel de gestión › Puerta de validación › Validar y previsualizar" aria-pressed="false" data-node-kind="security" data-node-sublabel="esquema y campos" data-node-tag="falla cerrado" data-node-context="Panel de gestión › Puerta de validación › Validar y previsualizar">
-          <title>Validar · esquema y campos · Panel de gestión › Puerta de validación › Validar y previsualizar · falla cerrado</title>
-          <rect x="328" y="219" width="132" height="68" rx="6" class="c-mask"/>
-          <rect x="328" y="219" width="132" height="68" rx="6" class="c-security" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(334 225) scale(0.6875)">
-            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
-            <path d="m5.8 8 1.5 1.5 3-3"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="394" y="240" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Validar</text>
-          <text data-detail="context" x="394" y="257" class="t-muted" font-size="8" text-anchor="middle">esquema y campos</text>
-        <text data-detail="fine" x="394" y="275" class="t-security" font-size="7" text-anchor="middle">falla cerrado</text>
-        </g>
-
-        <g id="node-previa" data-node-id="previa" data-node-label="Revisar" tabindex="0" role="button" aria-label="Focus Revisar, previa fiel en legales, Panel de gestión › Validar y previsualizar" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="previa fiel en legales" data-node-context="Panel de gestión › Validar y previsualizar">
-          <title>Revisar · previa fiel en legales · Panel de gestión › Validar y previsualizar</title>
-          <rect x="530.8" y="227" width="132" height="52" rx="6" class="c-mask"/>
-          <rect x="530.8" y="227" width="132" height="52" rx="6" class="c-frontend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(536.8 233) scale(0.6875)">
+        <g id="node-cambio" data-node-id="cambio" data-node-label="Cambio" tabindex="0" role="button" aria-label="Focus Cambio, código o contenido, Cambio y entrega › Cambio" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="código o contenido" data-node-context="Cambio y entrega › Cambio">
+          <title>Cambio · código o contenido · Cambio y entrega › Cambio</title>
+          <rect x="48" y="94" width="92" height="52" rx="6" class="c-mask"/>
+          <rect x="48" y="94" width="92" height="52" rx="6" class="c-frontend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(54 100) scale(0.6875)">
             <rect x="2" y="3" width="12" height="10" rx="2"/>
             <path d="M2 6.5h12"/>
             <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
             <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="596.8" y="248" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Revisar</text>
-          <text data-detail="context" x="596.8" y="265" class="t-muted" font-size="8" text-anchor="middle">previa fiel en legales</text>
+          <text data-node-label="" data-detail-anchor="" x="94" y="115" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Cambio</text>
+          <text data-detail="context" x="94" y="132" class="t-muted" font-size="7.7" text-anchor="middle">código o contenido</text>
         </g>
 
-        <g id="node-regenerar" data-node-id="regenerar" data-node-label="Regenerar sección" tabindex="0" role="button" aria-label="Focus Regenerar sección, acción cerrada cms:*, Panel de gestión › Publicar" aria-pressed="false" data-node-kind="backend" data-node-sublabel="acción cerrada cms:*" data-node-context="Panel de gestión › Publicar">
-          <title>Regenerar sección · acción cerrada cms:* · Panel de gestión › Publicar</title>
-          <rect x="719.1999999999999" y="227" width="132" height="52" rx="6" class="c-mask"/>
-          <rect x="719.1999999999999" y="227" width="132" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(725.1999999999999 233) scale(0.6875)">
-            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="785.1999999999999" y="248" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Regenerar sección</text>
-          <text data-detail="context" x="785.1999999999999" y="265" class="t-muted" font-size="8" text-anchor="middle">acción cerrada cms:*</text>
-        </g>
-
-        <g id="node-loader" data-node-id="loader" data-node-label="Loader y escritura" tabindex="0" role="button" aria-label="Focus Loader y escritura, assets/data · NFS, Generación y publicación › Publicar" aria-pressed="false" data-node-kind="backend" data-node-sublabel="assets/data · NFS" data-node-context="Generación y publicación › Publicar">
-          <title>Loader y escritura · assets/data · NFS · Generación y publicación › Publicar</title>
-          <rect x="719.1999999999999" y="354" width="132" height="52" rx="6" class="c-mask"/>
-          <rect x="719.1999999999999" y="354" width="132" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(725.1999999999999 360) scale(0.6875)">
-            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="785.1999999999999" y="375" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Loader y escritura</text>
-          <text data-detail="context" x="785.1999999999999" y="392" class="t-muted" font-size="8" text-anchor="middle">assets/data · NFS</text>
-        </g>
-
-        <g id="node-visible" data-node-id="visible" data-node-label="Visible al instante" tabindex="0" role="button" aria-label="Focus Visible al instante, sin despliegue, Generación y publicación › Publicar" aria-pressed="false" data-node-kind="frontend" data-node-sublabel="sin despliegue" data-node-context="Generación y publicación › Publicar">
-          <title>Visible al instante · sin despliegue · Generación y publicación › Publicar</title>
-          <rect x="950.8" y="354" width="132" height="52" rx="6" class="c-mask"/>
-          <rect x="950.8" y="354" width="132" height="52" rx="6" class="c-frontend" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="frontend" class="semantic-sigil s-frontend" transform="translate(956.8 360) scale(0.6875)">
-            <rect x="2" y="3" width="12" height="10" rx="2"/>
-            <path d="M2 6.5h12"/>
-            <circle cx="4.1" cy="4.8" r=".7" class="sigil-fill"/>
-            <circle cx="6.3" cy="4.8" r=".7" class="sigil-fill"/>
-          </g>
-          <text data-node-label="" data-detail-anchor="" x="1016.8" y="375" class="t-primary" font-size="10.8" font-weight="600" text-anchor="middle">Visible al instante</text>
-          <text data-detail="context" x="1016.8" y="392" class="t-muted" font-size="8" text-anchor="middle">sin despliegue</text>
-        </g>
-
-        <g id="node-corregir" data-node-id="corregir" data-node-label="Corregir y reintentar" tabindex="0" role="button" aria-label="Focus Corregir y reintentar, error de validación, Revisión y corrección › Validar y previsualizar" aria-pressed="false" data-node-kind="security" data-node-sublabel="error de validación" data-node-context="Revisión y corrección › Validar y previsualizar">
-          <title>Corregir y reintentar · error de validación · Revisión y corrección › Validar y previsualizar</title>
-          <rect x="318" y="480" width="152" height="52" rx="6" class="c-mask"/>
-          <rect x="318" y="480" width="152" height="52" rx="6" class="c-security" stroke-width="1.5"/>
-          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(324 486) scale(0.6875)">
+        <g id="node-decision" data-node-id="decision" data-node-label="Decisión" tabindex="0" role="button" aria-label="Focus Decisión, ¿suite completa?, Cambio y entrega › Cambio" aria-pressed="false" data-node-kind="security" data-node-sublabel="¿suite completa?" data-node-tag="humana" data-node-context="Cambio y entrega › Cambio">
+          <title>Decisión · ¿suite completa? · Cambio y entrega › Cambio · humana</title>
+          <rect x="168" y="86" width="92" height="68" rx="6" class="c-mask"/>
+          <rect x="168" y="86" width="92" height="68" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(174 92) scale(0.6875)">
             <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
             <path d="m5.8 8 1.5 1.5 3-3"/>
           </g>
-          <text data-node-label="" data-detail-anchor="" x="394" y="501" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Corregir y reintentar</text>
-          <text data-detail="context" x="394" y="518" class="t-muted" font-size="8" text-anchor="middle">error de validación</text>
+          <text data-node-label="" data-detail-anchor="" x="214" y="107" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Decisión</text>
+          <text data-detail="context" x="214" y="124" class="t-muted" font-size="8" text-anchor="middle">¿suite completa?</text>
+        <text data-detail="fine" x="214" y="142" class="t-security" font-size="7" text-anchor="middle">humana</text>
+        </g>
+
+        <g id="node-verify" data-node-id="verify" data-node-label="verify:data" tabindex="0" role="button" aria-label="Focus verify:data, y verify:vendor, Cambio y entrega › Entrega" aria-pressed="false" data-node-kind="security" data-node-sublabel="y verify:vendor" data-node-tag="bloqueante" data-node-context="Cambio y entrega › Entrega">
+          <title>verify:data · y verify:vendor · Cambio y entrega › Entrega · bloqueante</title>
+          <rect x="528" y="86" width="92" height="68" rx="6" class="c-mask"/>
+          <rect x="528" y="86" width="92" height="68" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(534 92) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="574" y="107" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">verify:data</text>
+          <text data-detail="context" x="574" y="124" class="t-muted" font-size="8" text-anchor="middle">y verify:vendor</text>
+        <text data-detail="fine" x="574" y="142" class="t-security" font-size="7" text-anchor="middle">bloqueante</text>
+        </g>
+
+        <g id="node-paquete" data-node-id="paquete" data-node-label="Paquete" tabindex="0" role="button" aria-label="Focus Paquete, ZIP + SHA-256, Cambio y entrega › Entrega" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="ZIP + SHA-256" data-node-context="Cambio y entrega › Entrega">
+          <title>Paquete · ZIP + SHA-256 · Cambio y entrega › Entrega</title>
+          <rect x="648" y="94" width="92" height="52" rx="6" class="c-mask"/>
+          <rect x="648" y="94" width="92" height="52" rx="6" class="c-cloud" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(654 100) scale(0.6875)">
+            <path d="M4.3 12.5h7.3a2.4 2.4 0 0 0 .2-4.8 4 4 0 0 0-7.5-1.3A3.1 3.1 0 0 0 4.3 12.5Z"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="694" y="115" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Paquete</text>
+          <text data-detail="context" x="694" y="132" class="t-muted" font-size="8" text-anchor="middle">ZIP + SHA-256</text>
+        </g>
+
+        <g id="node-pytest" data-node-id="pytest" data-node-label="pytest" tabindex="0" role="button" aria-label="Focus pytest, panel · auth · loaders, Pruebas CONTENT › npm test › Suite" aria-pressed="false" data-node-kind="backend" data-node-sublabel="panel · auth · loaders" data-node-context="Pruebas CONTENT › npm test › Suite">
+          <title>pytest · panel · auth · loaders · Pruebas CONTENT › npm test › Suite</title>
+          <rect x="288" y="220" width="92" height="52" rx="6" class="c-mask"/>
+          <rect x="288" y="220" width="92" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(294 226) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="334" y="241" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">pytest</text>
+          <text data-detail="context" x="334" y="258" class="t-muted" font-size="6.3" text-anchor="middle">panel · auth · loaders</text>
+        </g>
+
+        <g id="node-node" data-node-id="node" data-node-label="Node" tabindex="0" role="button" aria-label="Focus Node, loaders · slugs · legal, Pruebas CONTENT › npm test › Suite" aria-pressed="false" data-node-kind="backend" data-node-sublabel="loaders · slugs · legal" data-node-context="Pruebas CONTENT › npm test › Suite">
+          <title>Node · loaders · slugs · legal · Pruebas CONTENT › npm test › Suite</title>
+          <rect x="408" y="220" width="92" height="52" rx="6" class="c-mask"/>
+          <rect x="408" y="220" width="92" height="52" rx="6" class="c-backend" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(414 226) scale(0.6875)">
+            <path d="M6 3 3 8l3 5M10 3l3 5-3 5"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="454" y="241" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Node</text>
+          <text data-detail="context" x="454" y="258" class="t-muted" font-size="6" text-anchor="middle">loaders · slugs · legal</text>
+        </g>
+
+        <g id="node-guardas" data-node-id="guardas" data-node-label="Guardas" tabindex="0" role="button" aria-label="Focus Guardas, cookies · mapa web, Pruebas VANILLA › node --test › Suite" aria-pressed="false" data-node-kind="security" data-node-sublabel="cookies · mapa web" data-node-context="Pruebas VANILLA › node --test › Suite">
+          <title>Guardas · cookies · mapa web · Pruebas VANILLA › node --test › Suite</title>
+          <rect x="288" y="346" width="92" height="52" rx="6" class="c-mask"/>
+          <rect x="288" y="346" width="92" height="52" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(294 352) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="334" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Guardas</text>
+          <text data-detail="context" x="334" y="384" class="t-muted" font-size="7.7" text-anchor="middle">cookies · mapa web</text>
+        </g>
+
+        <g id="node-arnes" data-node-id="arnes" data-node-label="Arnés" tabindex="0" role="button" aria-label="Focus Arnés, sinks DOM · noopener, Pruebas VANILLA › node --test › Suite" aria-pressed="false" data-node-kind="security" data-node-sublabel="sinks DOM · noopener" data-node-context="Pruebas VANILLA › node --test › Suite">
+          <title>Arnés · sinks DOM · noopener · Pruebas VANILLA › node --test › Suite</title>
+          <rect x="408" y="346" width="92" height="52" rx="6" class="c-mask"/>
+          <rect x="408" y="346" width="92" height="52" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(414 352) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="454" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Arnés</text>
+          <text data-detail="context" x="454" y="384" class="t-muted" font-size="7" text-anchor="middle">sinks DOM · noopener</text>
+        </g>
+
+        <g id="node-parada" data-node-id="parada" data-node-label="No se publica" tabindex="0" role="button" aria-label="Focus No se publica, rama wip/, Pruebas VANILLA › Entrega" aria-pressed="false" data-node-kind="security" data-node-sublabel="rama wip/" data-node-context="Pruebas VANILLA › Entrega">
+          <title>No se publica · rama wip/ · Pruebas VANILLA › Entrega</title>
+          <rect x="634" y="346" width="120" height="52" rx="6" class="c-mask"/>
+          <rect x="634" y="346" width="120" height="52" rx="6" class="c-security" stroke-width="1.5"/>
+          <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(640 352) scale(0.6875)">
+            <path d="M8 2.2 13 4v3.5c0 3.1-1.8 5.4-5 6.5-3.2-1.1-5-3.4-5-6.5V4Z"/>
+            <path d="m5.8 8 1.5 1.5 3-3"/>
+          </g>
+          <text data-node-label="" data-detail-anchor="" x="694" y="367" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">No se publica</text>
+          <text data-detail="context" x="694" y="384" class="t-muted" font-size="8" text-anchor="middle">rama wip/</text>
         </g>
 
         <!-- Edge labels -->
+        <g data-detail="context" data-edge-from="arnes" data-edge-to="parada" data-edge-label="rojo" data-edge-key="0">
+          <rect x="559" y="394" width="30" height="14" rx="3" class="c-mask"/>
+          <text x="574" y="404" class="t-security" font-size="8" text-anchor="middle">rojo</text>
+        </g>
+        <g data-detail="context" data-edge-from="arnes" data-edge-to="verify" data-edge-label="verde" data-edge-key="1">
+          <rect x="520" y="345" width="34" height="14" rx="3" class="c-mask"/>
+          <text x="537" y="355" class="t-backend" font-size="8" text-anchor="middle">verde</text>
+        </g>
 
-        <g data-detail="context" data-edge-from="corregir" data-edge-to="editar" data-edge-label="revisar" data-edge-key="1" data-edge-id="corregir-editar">
-          <rect x="270.7" y="486" width="43.6" height="14" rx="3" class="c-mask"/>
-          <text x="292.5" y="496" class="t-database" font-size="8" text-anchor="middle">revisar</text>
+        <g data-detail="context" data-edge-from="decision" data-edge-to="guardas" data-edge-label="VANILLA" data-edge-key="3">
+          <rect x="225.7" y="352" width="43.6" height="14" rx="3" class="c-mask"/>
+          <text x="247.5" y="362" class="t-muted" font-size="8" text-anchor="middle">VANILLA</text>
         </g>
-        <g data-detail="context" data-edge-from="editar" data-edge-to="validar" data-edge-label="guardar cambios" data-edge-key="2" data-edge-id="editar-validar">
-          <rect x="293" y="288" width="82" height="14" rx="3" class="c-mask"/>
-          <text x="334" y="298" class="t-backend" font-size="8" text-anchor="middle">guardar cambios</text>
+        <g data-detail="context" data-edge-from="decision" data-edge-to="pytest" data-edge-label="sí" data-edge-key="4">
+          <rect x="239.5" y="226" width="30" height="14" rx="3" class="c-mask"/>
+          <text x="254.5" y="236" class="t-backend" font-size="8" text-anchor="middle">sí</text>
         </g>
-        <g data-detail="context" data-edge-from="loader" data-edge-to="visible" data-edge-label="assets/data · NFS" data-edge-key="3" data-edge-id="loader-visible">
-          <rect x="855.2" y="360" width="91.6" height="14" rx="3" class="c-mask"/>
-          <text x="901" y="370" class="t-backend" font-size="8" text-anchor="middle">assets/data · NFS</text>
+
+        <g data-detail="context" data-edge-from="node" data-edge-to="verify" data-edge-label="verde" data-edge-key="6">
+          <rect x="474" y="100" width="34" height="14" rx="3" class="c-mask"/>
+          <text x="491" y="110" class="t-backend" font-size="8" text-anchor="middle">verde</text>
         </g>
-        <g data-detail="context" data-edge-from="previa" data-edge-to="regenerar" data-edge-label="aprobada" data-edge-key="4" data-edge-id="previa-regenerar">
-          <rect x="666.8" y="233" width="48.4" height="14" rx="3" class="c-mask"/>
-          <text x="691" y="243" class="t-backend" font-size="8" text-anchor="middle">aprobada</text>
-        </g>
-        <g data-detail="context" data-edge-from="regenerar" data-edge-to="loader" data-edge-label="ejecuta cms:*" data-edge-key="5" data-edge-id="regenerar-loader">
-          <rect x="789.9999999999999" y="282" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="826.1999999999999" y="292" class="t-muted" font-size="8" text-anchor="middle">ejecuta cms:*</text>
-        </g>
-        <g data-detail="context" data-edge-from="validar" data-edge-to="corregir" data-edge-label="error de validación" data-edge-key="6" data-edge-id="validar-corregir">
-          <rect x="389.4" y="345" width="101.2" height="14" rx="3" class="c-mask"/>
-          <text x="440" y="355" class="t-security" font-size="8" text-anchor="middle">error de validación</text>
-        </g>
-        <g data-detail="context" data-edge-from="validar" data-edge-to="previa" data-edge-label="sin errores" data-edge-key="7" data-edge-id="validar-previa">
-          <rect x="464" y="233" width="62.8" height="14" rx="3" class="c-mask"/>
-          <text x="495.4" y="243" class="t-muted" font-size="8" text-anchor="middle">sin errores</text>
-        </g>
+
+
 
         <!-- Legend -->
         <g data-legend="" data-legend-bridge="">
-          <text x="20" y="568" class="t-primary" font-size="12" font-weight="650">Legend</text>
-          <g data-legend-semantic-kind="frontend" data-legend-kind="frontend" data-legend-label="Interfaz" data-legend-x="20" data-legend-baseline="588" data-legend-width="78">
-            <rect x="20" y="580" width="14" height="9" rx="2" class="c-frontend" stroke-width="1"/>
-            <text x="42" y="588" class="t-muted" font-size="7.5" font-weight="500">Interfaz</text>
+          <text x="20" y="434" class="t-primary" font-size="12" font-weight="650">Legend</text>
+          <g data-legend-semantic-kind="frontend" data-legend-kind="frontend" data-legend-label="Cambio" data-legend-x="20" data-legend-baseline="454" data-legend-width="70">
+            <rect x="20" y="446" width="14" height="9" rx="2" class="c-frontend" stroke-width="1"/>
+            <text x="42" y="454" class="t-muted" font-size="7.5" font-weight="500">Cambio</text>
           </g>
-          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="Servicio" data-legend-x="105" data-legend-baseline="588" data-legend-width="78">
-            <rect x="105" y="580" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
-            <text x="127" y="588" class="t-muted" font-size="7.5" font-weight="500">Servicio</text>
+          <g data-legend-semantic-kind="backend" data-legend-kind="backend" data-legend-label="Suite de pruebas" data-legend-x="97" data-legend-baseline="454" data-legend-width="113">
+            <rect x="97" y="446" width="14" height="9" rx="2" class="c-backend" stroke-width="1"/>
+            <text x="119" y="454" class="t-muted" font-size="7.5" font-weight="500">Suite de pruebas</text>
           </g>
-          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="Seguridad" data-legend-x="190" data-legend-baseline="588" data-legend-width="83">
-            <rect x="190" y="580" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
-            <text x="212" y="588" class="t-muted" font-size="7.5" font-weight="500">Seguridad</text>
+          <g data-legend-semantic-kind="security" data-legend-kind="security" data-legend-label="Puerta o guarda" data-legend-x="217" data-legend-baseline="454" data-legend-width="109">
+            <rect x="217" y="446" width="14" height="9" rx="2" class="c-security" stroke-width="1"/>
+            <text x="239" y="454" class="t-muted" font-size="7.5" font-weight="500">Puerta o guarda</text>
           </g>
-          <g data-legend-semantic-kind="external" data-legend-kind="external" data-legend-label="Actor externo" data-legend-x="280" data-legend-baseline="588" data-legend-width="100">
-            <rect x="280" y="580" width="14" height="9" rx="2" class="c-external" stroke-width="1"/>
-            <text x="302" y="588" class="t-muted" font-size="7.5" font-weight="500">Actor externo</text>
+          <g data-legend-semantic-kind="cloud" data-legend-kind="cloud" data-legend-label="Entrega" data-legend-x="333" data-legend-baseline="454" data-legend-width="74">
+            <rect x="333" y="446" width="14" height="9" rx="2" class="c-cloud" stroke-width="1"/>
+            <text x="355" y="454" class="t-muted" font-size="7.5" font-weight="500">Entrega</text>
           </g>
         </g>
       </svg>
@@ -5533,34 +5537,37 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     <div class="cards">
       <div class="card">
         <div class="card-header">
-          <div class="card-dot cyan"></div>
-          <h3>Falla cerrado</h3>
-        </div>
-        <ul>
-          <li>&bull; Se valida antes de escribir</li>
-          <li>&bull; Sin guardar no hay regeneración</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
           <div class="card-dot emerald"></div>
-          <h3>Sin sorpresas</h3>
+          <h3>Documento = código</h3>
         </div>
         <ul>
-          <li>&bull; La previa legal usa el render del build</li>
-          <li>&bull; Los textos legales exigen es/en/va</li>
+          <li>&bull; Política de cookies = claves usadas</li>
+          <li>&bull; El mapa web cubre todas las vistas</li>
+          <li>&bull; Slug renombrado = alias</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
-          <div class="card-dot amber"></div>
-          <h3>Auditable</h3>
+          <div class="card-dot rose"></div>
+          <h3>Condiciones de parada</h3>
         </div>
         <ul>
-          <li>&bull; Cada acción queda registrada</li>
-          <li>&bull; El panel nunca publica por Git</li>
+          <li>&bull; En rojo, a una rama wip/</li>
+          <li>&bull; Sin datos íntegros no hay ZIP</li>
+          <li>&bull; La suite la decide una persona</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-dot cyan"></div>
+          <h3>Seguridad vigilada</h3>
+        </div>
+        <ul>
+          <li>&bull; Inventario de sinks DOM</li>
+          <li>&bull; noopener y URL con allowlist</li>
+          <li>&bull; Sin expediente en el repo público</li>
         </ul>
       </div>
     </div>

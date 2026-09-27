@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Sesiones del panel — ciclo de vida",
+    "output": "09-ciclo-sesion-panel.es.html",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1000,
+      600
+    ],
+    "views": [
+      {
+        "id": "acceso",
+        "label": "Acceso",
+        "focus": [
+          "sin",
+          "cred",
+          "verif",
+          "activa",
+          "cierre"
+        ],
+        "note": "Una sesión solo existe si la verificación y su registro en auditoría tienen éxito."
+      },
+      {
+        "id": "bloqueo",
+        "label": "Bloqueo y caducidad",
+        "focus": [
+          "verif",
+          "bloq",
+          "activa",
+          "cad"
+        ],
+        "note": "Cinco fallos bloquean la cuenta 15 minutos; la sesión caduca a las 8 horas o tras 30 minutos sin actividad."
+      },
+      {
+        "id": "contrasena",
+        "label": "Contraseña provisional",
+        "focus": [
+          "verif",
+          "cambio",
+          "recup",
+          "activa"
+        ],
+        "note": "Una contraseña provisional obliga a cambiarla antes de usar el panel; la recuperación es local y revoca las sesiones."
+      }
+    ],
+    "legend": {
+      "entries": {
+        "start": {
+          "label": "inicio"
+        },
+        "active": {
+          "label": "estado activo"
+        },
+        "waiting": {
+          "label": "en espera"
+        },
+        "decision": {
+          "label": "decisión"
+        },
+        "success": {
+          "label": "fin correcto"
+        },
+        "failure": {
+          "label": "bloqueo"
+        },
+        "neutral": {
+          "label": "fin por caducidad"
+        },
+        "external": {
+          "label": "acción local"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Acceso al panel"
+    },
+    {
+      "id": "excepciones",
+      "label": "Contraseña, bloqueo y caducidad"
+    },
+    {
+      "id": "terminal",
+      "label": "Administración local"
+    }
+  ],
+  "states": [
+    {
+      "id": "sin",
+      "type": "start",
+      "label": "Sin sesión",
+      "sublabel": "pantalla de acceso",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "cred",
+      "type": "active",
+      "label": "Credenciales",
+      "sublabel": "usuario + contraseña",
+      "lane": "main",
+      "col": 1,
+      "step": "02"
+    },
+    {
+      "id": "verif",
+      "type": "decision",
+      "label": "Verificación",
+      "sublabel": "Argon2id · auditoría",
+      "lane": "main",
+      "col": 2,
+      "step": "03",
+      "tag": "falla cerrado"
+    },
+    {
+      "id": "activa",
+      "type": "active",
+      "label": "Sesión activa",
+      "sublabel": "revalida cada acción",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "cierre",
+      "type": "success",
+      "label": "Cierre",
+      "sublabel": "sesion.cierre",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "cambio",
+      "type": "waiting",
+      "label": "Cambio obligatorio",
+      "sublabel": "contraseña provisional",
+      "lane": "excepciones",
+      "col": 1,
+      "width": 140
+    },
+    {
+      "id": "bloq",
+      "type": "failure",
+      "label": "Bloqueada",
+      "sublabel": "5 fallos · 15 min",
+      "lane": "excepciones",
+      "col": 0
+    },
+    {
+      "id": "cad",
+      "type": "neutral",
+      "label": "Caducada",
+      "sublabel": "sesion.expiracion",
+      "lane": "excepciones",
+      "col": 2
+    },
+    {
+      "id": "recup",
+      "type": "external",
+      "label": "Recuperación",
+      "sublabel": "recover_superadmin.py",
+      "lane": "terminal",
+      "col": 1,
+      "yOffset": -40
+    }
+  ],
+  "transitions": [
+    {
+      "from": "verif",
+      "to": "bloq",
+      "label": "5 fallos",
+      "variant": "security",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "bloq",
+      "to": "cred",
+      "label": "tras 15 min",
+      "variant": "dashed"
+    },
+    {
+      "from": "verif",
+      "to": "cambio",
+      "label": "provisional",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "from": "cambio",
+      "to": "activa",
+      "label": "nueva contraseña",
+      "variant": "emphasis",
+      "route": "straight",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "from": "activa",
+      "to": "cad",
+      "label": "8 h · 30 min inactiva",
+      "variant": "dashed"
+    },
+    {
+      "from": "recup",
+      "to": "cambio",
+      "label": "revoca sesiones",
+      "variant": "security",
+      "route": "straight",
+      "fromSide": "top",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Falla cerrado",
+      "items": [
+        "Sin auditoría no hay sesión",
+        "Argon2id en disco local",
+        "Error sin pistas de usuario"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Límites",
+      "items": [
+        "5 fallos: 15 min de bloqueo",
+        "8 h de vida máxima",
+        "30 min de inactividad"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Recuperación",
+      "items": [
+        "Solo con acceso local",
+        "Exige escribir RECUPERAR",
+        "Revoca sesiones previas"
+      ]
+    }
+  ]
+}
