@@ -94,11 +94,7 @@
     background: radial-gradient(circle, rgb(255 244 225 / .18), transparent 70%);
   }
   .hero .wrap { position: relative; z-index: 1; }
-  .eyebrow {
-    display: inline-block; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-    background: rgb(255 255 255 / .14); border: 1px solid rgb(255 255 255 / .25); padding: .3rem .8rem; border-radius: 999px;
-  }
-  .hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.08; margin: 1.25rem 0 1rem; font-weight: 700; max-width: 18ch; }
+  .hero h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.08; margin: 0 0 1rem; font-weight: 700; max-width: 18ch; }
   .hero p { font-size: 1.15rem; max-width: 46rem; margin: 0; color: rgb(255 255 255 / .88); }
   .hero .hint { margin-top: 1.25rem; font-size: .95rem; color: rgb(255 255 255 / .75); }
 
@@ -154,7 +150,6 @@
 </header>
 <div class="hero">
   <div class="wrap">
-    <span class="eyebrow" id="meta-count">10 temas · 20 diagramas</span>
     <h1 id="page-title">Diagramas de la aplicación</h1>
     <p id="page-lede">Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.</p>
     <p class="hint" id="meta-hint">Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.</p>
@@ -280,7 +275,6 @@
       sub: "Diagramas de la aplicación",
       skip: "Saltar al contenido",
       lede: "Arquitectura, uso y cumplimiento de la aplicación, en español e inglés.",
-      count: "10 temas · 20 diagramas",
       hint: "Cada diagrama se abre en una pestaña nueva con sus propias vistas guiadas, búsqueda y exportación.",
       open: "Abrir diagrama",
       alt: "También en inglés",
@@ -293,7 +287,6 @@
       sub: "Application diagrams",
       skip: "Skip to content",
       lede: "Architecture, usage and compliance of the application, in Spanish and English.",
-      count: "10 topics · 20 diagrams",
       hint: "Each diagram opens in a new tab with its own guided views, search and export.",
       open: "Open diagram",
       alt: "Also in Spanish",
@@ -312,7 +305,6 @@
     document.getElementById("brand-sub").textContent = t.sub;
     document.getElementById("skip").textContent = t.skip;
     document.getElementById("page-lede").textContent = t.lede;
-    document.getElementById("meta-count").textContent = t.count;
     document.getElementById("meta-hint").textContent = t.hint;
     document.getElementById("footer-text").textContent = t.footer;
     document.getElementById("lang-es").setAttribute("aria-pressed", String(lang === "es"));
